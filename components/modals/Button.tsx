@@ -32,7 +32,7 @@ const Button = ({
 			onClick={onClick}
 			className={`bg-black text-white w-full flex flex-row items-center justify-center relative hover:opacity-90 transition 
       ${small ? "p-2 text-sm" : "p-4"}
-      ${rounded ? "rounded-full" : " rounded-[1.25vw]"}
+      ${rounded ? "rounded-full" : " rounded-[1.75vw]"}
       `}
 		>
 			{BeforeIcon && (

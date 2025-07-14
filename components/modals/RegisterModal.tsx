@@ -70,9 +70,9 @@ const RegisterModal = () => {
 	};
 
 	const bodyContent = (
-		<div className="flex flex-col gap-3">
+		<div className="flex flex-col gap-[1vh]">
 			<Heading title="Register" subtitle="Create an account" />
-			<div className="flex gap-3">
+			<div className="flex gap-[1vw]">
 				<Input
 					id="name"
 					label="Full Name"
@@ -90,7 +90,7 @@ const RegisterModal = () => {
 					register={register}
 				/>
 			</div>
-			<div className="flex gap-3">
+			<div className="flex gap-[1vw]">
 				<Input
 					id="email"
 					label="Email"

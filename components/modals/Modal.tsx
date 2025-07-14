@@ -61,7 +61,7 @@ const Modal = ({
 	return (
 		<>
 			<div className="justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70 backdrop-blur-md h-screen ">
-				<div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-screen lg:h-auto md:h-auto overflow-y-hidden">
+				<div className="relative w-full md:w-[55vw] xl:w-[50vw] my-6 mx-auto h-screen lg:h-auto md:h-auto overflow-y-hidden">
 					{/* CONTENT */}
 					<div
 						className={`translate duration-300 h-full ${
@@ -84,7 +84,7 @@ const Modal = ({
 							{/* BODY */}
 							<div className="relative p-6 py-4 flex-auto">{body}</div>
 							{/* FOOTER */}
-							<div className="flex flex-col gap-2 p-6 py-4 w-full">
+							<div className="flex flex-col gap-0 p-6 py-4 w-full">
 								<div className="flex flex-row items-center gap-4 w-full">
 									{secondaryAction && secondaryActionLabel && (
 										<Button
