@@ -5,6 +5,7 @@ import Heading from "../Heading";
 import MediblobChat from "./MediblobChat";
 
 const PatientDashboard = ({ currentUser }: { currentUser: User }) => {
+	console.log(currentUser);
 	return (
 		<div className="flex">
 			<PatientNavbar />
