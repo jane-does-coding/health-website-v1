@@ -18,6 +18,7 @@ model User {
   name           String
   username       String   
   access         String   
+  code           String   @unique 
   email          String   @unique
   hashedPassword String
   createdAt      DateTime @default(now())
