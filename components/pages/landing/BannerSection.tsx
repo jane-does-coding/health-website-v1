@@ -50,7 +50,7 @@ const BannerSection = () => {
 				>
 					<p
 						onClick={() => RegisterModal.onOpen()}
-						className="font-extralight text-[3vh]"
+						className="font-extralight text-[3vh] cursor-pointer"
 					>
 						Register
 					</p>
@@ -64,7 +64,7 @@ const BannerSection = () => {
 				>
 					<p
 						onClick={() => LoginModal.onOpen()}
-						className="font-extralight text-[3vh]"
+						className="font-extralight text-[3vh] cursor-pointer"
 					>
 						Login
 					</p>
@@ -76,7 +76,10 @@ const BannerSection = () => {
 					variants={fadeInUp(0.3)}
 					className=""
 				>
-					<Link href={"/"} className="font-extralight text-[3vh]">
+					<Link
+						href={"/"}
+						className="font-extralight text-[3vh] cursor-pointer"
+					>
 						Contact
 					</Link>
 				</motion.div>
