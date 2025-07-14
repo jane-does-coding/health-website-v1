@@ -7,7 +7,11 @@ export default async function Home() {
 	console.log(currentUser);
 	return (
 		<div className="">
-			{currentUser == null ? <LandingPage /> : <DashboardPage />}
+			{currentUser == null ? (
+				<LandingPage />
+			) : (
+				<DashboardPage currentUser={currentUser} />
+			)}
 		</div>
 	);
 }
