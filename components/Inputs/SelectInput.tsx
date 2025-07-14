@@ -29,7 +29,7 @@ const SelectInput = ({
 				disabled={disabled}
 				defaultValue={options[0]}
 				{...register(id, { required })}
-				className={`peer w-full p-3 pt-6 pl-4 font-light bg-neutral-300/75 border-2 border-neutral-400/75 text-black rounded-[2vh] outline-none transition disabled:opacity-70 disabled:cursor-not-allowed appearance-none
+				className={`peer w-full p-3 pt-6 pl-4 font-light bg-neutral-100 border-2 border-neutral-400/75 text-black rounded-[2vh] outline-none transition disabled:opacity-70 disabled:cursor-not-allowed appearance-none
           ${errors[id] ? "border-rose-400" : "border-neutral-300"}
           ${errors[id] ? "focus:border-rose-500" : "focus:border-neutral-900"}
         `}

@@ -13,7 +13,7 @@ const LandingPage = () => {
 			<img src="/border.png" className="w-[100vw] object-cover" alt="" />
 			<AboutSection />
 			<img src="/border.png" className="w-[100vw] object-cover" alt="" />
-			<div className="min-h-[105vh] flex flex-col items-center justify-center relative">
+			<div className="min-relative h-[105vh] flex flex-col items-center justify-center relative">
 				<Pharagraph value="Lorem ipsum dolor sit amet, consectetur adipiscin _image_ elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem _image2_ ipsum dolor sit amet, consectetur adipiscing elit, sed do _image3_ eiusmod tempor incididunt ut labore et dolore magna aliqua." />
 			</div>
 			<img src="/border.png" className="w-[100vw] object-cover" alt="" />

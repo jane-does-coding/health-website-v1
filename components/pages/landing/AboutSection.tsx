@@ -36,7 +36,7 @@ const AboutSection = () => {
 
 	return (
 		<div className="">
-			<div className="h-[105vh] flex flex-col gap-[3vh] items-center justify-center">
+			<div className="relative h-[105vh] flex flex-col gap-[3vh] items-center justify-center">
 				{/* Card 1 */}
 				<motion.div
 					ref={ref1}

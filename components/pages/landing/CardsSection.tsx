@@ -34,7 +34,7 @@ const CardsSection = () => {
 
 	return (
 		<div className="">
-			<div className="h-[105vh] flex flex-col gap-[3vh] items-center justify-center w-[85vw] mx-auto relative">
+			<div className="relative h-[105vh] flex flex-col gap-[3vh] items-center justify-center w-[85vw] mx-auto relative">
 				{/* Star images (static) */}
 				<img
 					src="/stars/image 1.png"
