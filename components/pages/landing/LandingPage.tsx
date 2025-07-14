@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import AboutSection from "./AboutSection";
 import Pharagraph from "./Word";

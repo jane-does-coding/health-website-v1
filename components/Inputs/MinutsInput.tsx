@@ -1,6 +1,14 @@
 import React from "react";
 
-const MinutsInput = ({ label, value, setValue, onChange }: any) => {
+const MinutsInput = ({
+	label,
+	value,
+	onChange,
+}: {
+	label: string;
+	value: string;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
 	return (
 		<div className="w-full relative my-1">
 			<input

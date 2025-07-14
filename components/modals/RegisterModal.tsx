@@ -56,8 +56,8 @@ const RegisterModal = () => {
 					}
 				});
 			})
-			.catch((err: any) => {
-				console.log("OH HELL NAH");
+			.catch((err: unknown) => {
+				console.log("Error submitting data");
 				console.log(err);
 				toast.error("Something went wrong");
 			})

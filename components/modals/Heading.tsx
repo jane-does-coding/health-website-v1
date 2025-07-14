@@ -22,7 +22,7 @@ const Heading = ({ title, subtitle, center, redirect }: HeadingProps) => {
 				</h3>
 			)}
 			{redirect && (
-				<Button onClick={(e) => router.push("/")} label="Home Page" rounded />
+				<Button onClick={() => router.push("/")} label="Home Page" rounded />
 			)}
 		</div>
 	);

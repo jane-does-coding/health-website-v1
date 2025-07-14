@@ -6,13 +6,11 @@ interface ButtonProps {
 	label: string;
 	rounded?: boolean;
 	wave?: boolean;
-	outline?: boolean;
 	disabled?: boolean;
 	small?: boolean;
 	beforeIcon?: IconType;
 	afterIcon?: IconType;
 	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-	purple?: Boolean;
 }
 
 const Button = ({
@@ -21,10 +19,8 @@ const Button = ({
 	label,
 	rounded,
 	small,
-	outline,
 	disabled,
 	onClick,
-	purple,
 }: ButtonProps) => {
 	return (
 		<button
