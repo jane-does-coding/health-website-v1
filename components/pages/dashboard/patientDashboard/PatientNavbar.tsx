@@ -48,11 +48,11 @@ const PatientNavbar = () => {
 
 				<button
 					onClick={() => signOut()}
-					className="relative group flex justify-center text-[4vh] mt-auto"
+					className="relative group flex justify-center text-[4vh] mt-auto cursor-pointer"
 				>
 					<MdLogout />
 					<span
-						className="absolute left-full ml-2 top-1/2 -translate-y-1/2 whitespace-nowrap
+						className="absolute left-full ml-2 top-1/2 -translate-y-1/2 whitespace-nowrap 
                        opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black px-[2vw] py-[0.5vh] rounded-[1vh] border-1 border-black text-[1.75vh] shadow-lg pointer-events-none"
 					>
 						Logout

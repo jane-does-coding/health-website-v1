@@ -13,7 +13,7 @@ const LandingPage = () => {
 			<AboutSection />
 			<img src="/border.png" className="w-[100vw] object-cover" alt="" />
 			<div className="min-relative h-[105vh] flex flex-col items-center justify-center relative">
-				<Pharagraph value="Lorem ipsum dolor sit amet, consectetur adipiscin _image_ elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem _image2_ ipsum dolor sit amet, consectetur adipiscing elit, sed do _image3_ eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+				<Pharagraph value="MediBlob is a healthcare platform that connects patients and doctors _image_ through real-time data sharing and AI-powered communication. _image2_ Patients can log symptoms, track medications, and receive personalized insights, _image3_ while doctors monitor progress and adjust treatments." />
 			</div>
 			<img src="/border.png" className="w-[100vw] object-cover" alt="" />
 			<CardsSection />
