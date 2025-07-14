@@ -1,9 +1,13 @@
 "use client";
-import { useScroll, motion, useTransform } from "framer-motion";
+import { useScroll, motion, useTransform, MotionValue } from "framer-motion";
 import React, { useRef } from "react";
 
-const Pharagraph = ({ value }: any) => {
-	const element = useRef(null);
+type PharagraphProps = {
+	value: string;
+};
+
+const Pharagraph = ({ value }: PharagraphProps) => {
+	const element = useRef<HTMLParagraphElement>(null);
 	const { scrollYProgress } = useScroll({
 		target: element,
 		offset: ["start 0.7", "start 0.1"],
@@ -26,7 +30,7 @@ const Pharagraph = ({ value }: any) => {
 				className="text-[5.25vh] max-w-full md:max-w-[70vw] p-[40px] flex flex-wrap text-center items-center justify-center pt-6"
 				ref={element}
 			>
-				{words.map((word: string, i: number) => {
+				{words.map((word, i) => {
 					const start = i / words.length;
 					const end = start + 1 / words.length;
 
@@ -53,7 +57,13 @@ const Pharagraph = ({ value }: any) => {
 	);
 };
 
-const Word = ({ children, range, progress }: any) => {
+type WordProps = {
+	children: React.ReactNode;
+	range: [number, number];
+	progress: MotionValue<number>;
+};
+
+const Word = ({ children, range, progress }: WordProps) => {
 	const opacity = useTransform(progress, range, [0.1, 1]);
 	return (
 		<motion.span style={{ opacity }} className="mr-4">
