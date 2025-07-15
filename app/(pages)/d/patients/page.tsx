@@ -1,6 +1,6 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import Heading from "@/components/pages/dashboard/Heading";
-import DoctorNavbar from "@/components/pages/dashboard/doctorDashboard/PatientNavbar";
+import DoctorNavbar from "@/components/pages/dashboard/doctorDashboard/DoctorNavbar";
 import PatientsPage from "@/components/pages/doctorPatients/PatientsPage";
 import React from "react";
 

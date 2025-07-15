@@ -4,7 +4,12 @@ import React from "react";
 const PatientsPage = ({ currentUser }: { currentUser: SafeUser }) => {
 	return (
 		<div className="mt-[3vh] w-full">
-			<h2 className="text-[5vh] mb-[2vh]">Patients</h2>
+			<h2 className="text-[5vh] mb-[2vh] flex items-center justify-between w-full">
+				Patients
+				<span className="px-[2vw] py-[1vh] text-[2vh] rounded-[2vh] bg-neutral-900 text-white">
+					Add Patient +
+				</span>
+			</h2>
 			<div className="flex flex-col  border-t-1 border-neutral-400">
 				{currentUser.connectedUsers.map((user, i) => (
 					<div
@@ -22,7 +27,7 @@ const PatientsPage = ({ currentUser }: { currentUser: SafeUser }) => {
 							<div className="font-semibold text-black border-1 border-neutral-900 text-[2vh] rounded-full py-[0.5vh] px-[2.25vw]">
 								0 Updates
 							</div>
-							<div className="bg-red-300 font-bold text-red-950 text-[2vh] rounded-md py-[0.5vh] px-[2.25vw] ml-[2vw]">
+							<div className="bg-red-300 font-bold text-red-950 text-[2vh] rounded-[1.5vh] py-[0.5vh] px-[2.25vw] ml-[2vw]">
 								Delete
 							</div>
 						</div>

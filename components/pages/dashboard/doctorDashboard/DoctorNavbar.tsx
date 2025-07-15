@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaRegChartBar } from "react-icons/fa";
+import { FaPeopleGroup } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
 import { MdLogout } from "react-icons/md";
 import { signOut } from "next-auth/react";
@@ -22,6 +23,19 @@ const DoctorNavbar = () => {
                          opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black px-[2vw] py-[0.5vh] rounded-[1vh] border-1 border-black text-[1.75vh] shadow-lg pointer-events-none"
 						>
 							Dashboard
+						</span>
+					</Link>
+
+					<Link
+						href={"/d/patients"}
+						className="relative group flex justify-center"
+					>
+						<FaPeopleGroup className="text-[4vh]" />
+						<span
+							className="absolute left-full ml-2 top-1/2 -translate-y-1/2 whitespace-nowrap
+                         opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black px-[2vw] py-[0.5vh] rounded-[1vh] border-1 border-black text-[1.75vh] shadow-lg pointer-events-none"
+						>
+							Patients
 						</span>
 					</Link>
 
