@@ -13,6 +13,9 @@ const PatientDashboard = ({ currentUser }: { currentUser: User }) => {
 			<div className="w-[93.5vw] flex py-[5vh] px-[4vw]">
 				<div className="w-7/10">
 					<Heading />
+					<h1 className="mt-[2vh]">
+						{currentUser.name}, {currentUser.access}
+					</h1>
 				</div>
 				<div className="w-3/10">
 					<MediblobChat />

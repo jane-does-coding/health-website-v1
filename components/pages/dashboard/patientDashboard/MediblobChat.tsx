@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const MediblobChat = () => {
 	const [chatStarted, setChatStarted] = useState(false);
@@ -7,30 +7,54 @@ const MediblobChat = () => {
 		{ sender: "user" | "bot"; text: string }[]
 	>([]);
 	const [input, setInput] = useState("");
+	const [loading, setLoading] = useState(false);
+	const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-	const handleSend = () => {
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+	};
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [messages, loading]);
+
+	const handleSend = async () => {
 		if (!input.trim()) return;
 
-		setMessages((prev) => [...prev, { sender: "user", text: input }]);
-		// Simulate bot response
-		setTimeout(() => {
+		const userMessage = input.trim();
+		setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
+		setInput("");
+		setLoading(true);
+
+		try {
+			const res = await fetch("/api/gemini", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ prompt: userMessage }),
+			});
+			const data = await res.json();
 			setMessages((prev) => [
 				...prev,
-				{ sender: "bot", text: "I'm MediBlob! How can I help?" },
+				{ sender: "bot", text: data.text || "Sorry, I didn’t get that." },
 			]);
-		}, 500);
+		} catch (err) {
+			setMessages((prev) => [
+				...prev,
+				{ sender: "bot", text: "Oops! Something went wrong." },
+			]);
+		}
 
-		setInput("");
+		setLoading(false);
 	};
 
 	if (!chatStarted) {
 		return (
 			<div className="w-full border-2 border-black min-h-[55vh] items-center justify-center rounded-[10vh] flex flex-col px-[3vw] pt-[2vh] pb-[5vh]">
 				<h2 className="text-[3.5vh] font-medium mb-[2vh]">MediBlob</h2>
-				<img src="/mediblob.png" alt="" />
+				<img src="/mediblob.png" alt="MediBlob" />
 				<p className="text-center font-light mt-[3vh] text-[2vh]">
-					MediBlob is an AI which you can ask questions while waiting for your
-					doctor’s response.
+					MediBlob is an AI you can chat with while waiting for your doctor’s
+					response.
 				</p>
 				<button
 					onClick={() => setChatStarted(true)}
@@ -43,7 +67,7 @@ const MediblobChat = () => {
 	}
 
 	return (
-		<div className="w-full border-2 border-black min-h-[55vh] rounded-[10vh] flex flex-col justify-between pt-[2vh] pb-[2vh] bg-white">
+		<div className="w-full border-2 border-black min-h-[55vh] max-h-[70vh] rounded-[10vh] flex flex-col justify-between pt-[2vh] pb-[2vh] bg-white">
 			<h2 className="text-[3vh] font-medium text-center mb-[1.25vh] px-[2vw] flex items-center justify-center gap-[1vw]">
 				MediBlob <img src="/mediblob.png" className="h-[5vh]" alt="" />
 			</h2>
@@ -51,23 +75,49 @@ const MediblobChat = () => {
 				{messages.map((msg, index) => (
 					<div
 						key={index}
-						className={`my-[0.5vh] p-[1vh] rounded-[2vh] max-w-[75%] ${
+						className={`my-[0.5vh] p-[1.25vh] px-[1.5vw] rounded-[2vh] border-1 w-fit max-w-[75%] ${
 							msg.sender === "user"
-								? "bg-blue-200 self-end text-right ml-auto"
-								: "bg-gray-300 self-start"
+								? "bg-blue-100 self-end text-right ml-auto"
+								: "bg-gray-200 self-start"
 						}`}
 					>
 						{msg.text}
 					</div>
 				))}
+				{loading && (
+					<div className="my-[0.5vh] p-[1.25vh] px-[1.5vw] h-[6vh] rounded-[2vh] bg-gray-200 border-1 w-fit flex gap-[0.4vw] items-center self-start">
+						<span
+							className="w-[0.75vh] h-[0.75vh] bg-neutral-800 rounded-full animate-bounce"
+							style={{
+								animationDelay: "0s",
+							}}
+						></span>
+						<span
+							className="w-[0.75vh] h-[0.75vh] bg-neutral-800 rounded-full animate-bounce"
+							style={{
+								animationDelay: "0.1s",
+							}}
+						></span>
+						<span
+							className="w-[0.75vh] h-[0.75vh] bg-neutral-800 rounded-full animate-bounce"
+							style={{
+								animationDelay: "0.2s",
+							}}
+						></span>
+					</div>
+				)}
+				<div ref={messagesEndRef} />
 			</div>
 			<div className="flex gap-2 items-center px-[2vw]">
 				<input
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
 					onKeyDown={(e) => e.key === "Enter" && handleSend()}
+					disabled={loading}
 					placeholder="Type your message..."
-					className="flex-1 border border-black/0 p-2 rounded-[1.5vh] text-[2vh] outline-none px-[1vw]"
+					className={`flex-1 border border-black/0 p-2 rounded-[1.5vh] text-[2vh] outline-none px-[1vw] ${
+						loading ? "opacity-50" : ""
+					}`}
 				/>
 			</div>
 		</div>
