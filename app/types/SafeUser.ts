@@ -1,8 +1,6 @@
-import { User, Connection } from "@prisma/client";
+// types/SafeUser.ts
+import { User } from "@prisma/client";
 
-export type SafeUser = User & {
-	connections: (Connection & {
-		from: User;
-		to: User;
-	})[];
+export type SafeUser = Omit<User, "hashedPassword"> & {
+	connectedUsers: User[];
 };

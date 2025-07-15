@@ -18,16 +18,18 @@ model User {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  connections     Connection[] @relation("fromUser")
-  connectedBy     Connection[] @relation("toUser")
+  connectionsFrom Connection[] @relation("ConnectionsFrom")
+  connectionsTo   Connection[] @relation("ConnectionsTo")
 }
 
 model Connection {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  from      User     @relation("fromUser", fields: [fromId], references: [id])
-  fromId    String   @db.ObjectId
-  to        User     @relation("toUser", fields: [toId], references: [id])
-  toId      String   @db.ObjectId
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+
+  from   User   @relation("ConnectionsFrom", fields: [fromId], references: [id])
+  fromId String @db.ObjectId
+
+  to     User   @relation("ConnectionsTo", fields: [toId], references: [id])
+  toId   String @db.ObjectId
+
   createdAt DateTime @default(now())
 }
-
