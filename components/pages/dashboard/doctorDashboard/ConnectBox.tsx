@@ -18,7 +18,7 @@ const ConnectBox = () => {
 				toast.success("Connected successfully!");
 				setCode("");
 			}
-		} catch (err: any) {
+		} catch (err: unknown | any) {
 			toast.error(err.response?.data?.error || "Something went wrong");
 		} finally {
 			setLoading(false);

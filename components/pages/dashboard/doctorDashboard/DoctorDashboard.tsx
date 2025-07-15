@@ -1,7 +1,7 @@
 import React from "react";
 import Heading from "../Heading";
 import { SafeUser } from "@/app/types/SafeUser";
-import ConnectBox from "./ConnectBox";
+/* import ConnectBox from "./ConnectBox"; */
 import DoctorNavbar from "./DoctorNavbar";
 import PatientsList from "./PatientsList";
 

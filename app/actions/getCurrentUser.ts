@@ -34,12 +34,11 @@ export default async function getCurrentUser() {
 			...(currentUser.connectionsTo?.map((c) => c.from) || []),
 		];
 
-		// remove sensitive info (optional)
-		const { hashedPassword, ...safeUser } = currentUser;
+		const { ...safeUser } = currentUser;
 
 		return {
 			...safeUser,
-			connectedUsers, // ✅ final flat user list
+			connectedUsers,
 		};
 	} catch (err) {
 		console.log("[GET_CURRENT_USER_ERROR]", err);
