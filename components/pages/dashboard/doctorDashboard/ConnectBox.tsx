@@ -18,7 +18,7 @@ const ConnectBox = () => {
 				toast.success("Connected successfully!");
 				setCode("");
 			}
-		} catch (err: any) {
+		} catch (err) {
 			const error = err as AxiosError<{ error: string }>;
 			toast.error(error.response?.data?.error || "Something went wrong");
 		} finally {

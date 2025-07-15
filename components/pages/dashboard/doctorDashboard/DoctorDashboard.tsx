@@ -1,7 +1,7 @@
 import React from "react";
 import Heading from "../Heading";
 import { SafeUser } from "@/app/types/SafeUser";
-/* import ConnectBox from "./ConnectBox"; */
+import ConnectBox from "./ConnectBox";
 import DoctorNavbar from "./DoctorNavbar";
 import PatientsList from "./PatientsList";
 
@@ -17,7 +17,8 @@ const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 					{/* <h1 className="mt-[2vh]">
 						{currentUser.name}, {currentUser.access}
 					</h1>
-					<ConnectBox /> */}
+				*/}
+					<ConnectBox />
 					<PatientsList currentUser={currentUser} />
 					{/* 
 					<h3 className="mt-[2vh]">Connections:</h3>
