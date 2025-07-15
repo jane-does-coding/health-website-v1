@@ -38,6 +38,7 @@ const MediblobChat = () => {
 				{ sender: "bot", text: data.text || "Sorry, I didn’t get that." },
 			]);
 		} catch (err) {
+			console.error("Error fetching response:", err);
 			setMessages((prev) => [
 				...prev,
 				{ sender: "bot", text: "Oops! Something went wrong." },
