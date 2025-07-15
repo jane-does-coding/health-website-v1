@@ -1,5 +1,4 @@
 import React from "react";
-import { Connection, User } from "@prisma/client";
 import PatientDashboard from "./patientDashboard/PatientDashboard";
 import DoctorDashboard from "./doctorDashboard/DoctorDashboard";
 import { SafeUser } from "@/app/types/SafeUser";
