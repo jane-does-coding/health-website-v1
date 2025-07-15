@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 
 const ConnectBox = () => {
@@ -18,8 +18,9 @@ const ConnectBox = () => {
 				toast.success("Connected successfully!");
 				setCode("");
 			}
-		} catch (err: unknown | any) {
-			toast.error(err.response?.data?.error || "Something went wrong");
+		} catch (err: any) {
+			const error = err as AxiosError<{ error: string }>;
+			toast.error(error.response?.data?.error || "Something went wrong");
 		} finally {
 			setLoading(false);
 		}
