@@ -1,11 +1,11 @@
-"use client";
 import React from "react";
-import { User } from "@prisma/client";
+import { Connection, User } from "@prisma/client";
 import PatientDashboard from "./patientDashboard/PatientDashboard";
 import DoctorDashboard from "./doctorDashboard/DoctorDashboard";
+import { SafeUser } from "@/app/types/SafeUser";
 
 interface DashboardPageProps {
-	currentUser: User;
+	currentUser: SafeUser;
 }
 
 const DashboardPage: React.FC<DashboardPageProps> = ({ currentUser }) => {
