@@ -37,7 +37,9 @@ const PatientsPage = ({ currentUser }: { currentUser: SafeUser }) => {
 								0 Updates
 							</div>
 							<button
-								onClick={() => unconnectModal.onOpen()}
+								onClick={() =>
+									unconnectModal.onOpen({ name: user.name, code: user.code })
+								}
 								className="bg-red-300 font-bold text-red-950 text-[2vh] rounded-[1.5vh] py-[0.5vh] px-[2.25vw] ml-[2vw] cursor-pointer"
 							>
 								Delete

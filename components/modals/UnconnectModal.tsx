@@ -14,6 +14,8 @@ const UnconnectModal = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 
+	const selectedUser = unconnectModal.selectedUser;
+
 	const {
 		register,
 		handleSubmit,
@@ -26,6 +28,13 @@ const UnconnectModal = () => {
 	});
 
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+		if (!selectedUser) return;
+
+		if (data.code !== selectedUser.code) {
+			toast.error("Code does not match. Try again.");
+			return;
+		}
+
 		setIsLoading(true);
 
 		try {
@@ -34,8 +43,8 @@ const UnconnectModal = () => {
 			});
 
 			if (res.data.success) {
-				toast.success("User disconnected.");
-				unconnectModal.onClose(); // reuse or replace
+				toast.success(`Disconnected from ${selectedUser.name}.`);
+				unconnectModal.onClose();
 				reset();
 				router.refresh();
 			}
@@ -49,10 +58,19 @@ const UnconnectModal = () => {
 
 	const bodyContent = (
 		<div className="flex flex-col gap-[2vh] py-[3vh] px-[1vw]">
-			<Heading title="Remove a user" subtitle="Enter their code below." />
+			<Heading
+				title={`Remove ${selectedUser?.name || "a user"}`}
+				subtitle={`Type the code to confirm removal.`}
+			/>
+
+			<div className="flex items-center justify-between">
+				<h2 className="text-[2.5vh] w-1/2">User: {selectedUser?.name}</h2>
+				<h2 className="text-[2.5vh] w-1/2">User Code: {selectedUser?.code}</h2>
+			</div>
+
 			<Input
 				id="code"
-				label="User Code"
+				label="Confirm Code"
 				disabled={isLoading}
 				errors={errors}
 				required
@@ -68,7 +86,7 @@ const UnconnectModal = () => {
 			disabled={isLoading}
 			isOpen={unconnectModal.isOpen}
 			title="Remove • Connection"
-			actionLabel="Remove a User"
+			actionLabel="Remove Connection"
 			onClose={() => {
 				unconnectModal.onClose();
 				reset();

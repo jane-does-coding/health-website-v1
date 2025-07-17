@@ -18,17 +18,7 @@ const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 						{currentUser.name}, {currentUser.access}
 					</h1>
 				*/}
-					<ConnectBox />
 					<PatientsList currentUser={currentUser} />
-					{/* 
-					<h3 className="mt-[2vh]">Connections:</h3>
-					<ul className="list-disc ml-5">
-						{currentUser.connectedUsers.map((user, i) => (
-							<li key={i}>
-								{user.name} ({user.email})
-							</li>
-						))}
-					</ul> */}
 				</div>
 				<div className="w-5/20"></div>
 			</div>
