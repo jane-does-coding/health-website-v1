@@ -15,7 +15,7 @@ const Heading = ({ title, subtitle, center, redirect }: HeadingProps) => {
 
 	return (
 		<div className={center ? "text-center" : "text-start"}>
-			<h2 className="text-[4vh] text-black">{title}</h2>
+			<h2 className="text-[3.5vh] text-black">{title}</h2>
 			{subtitle && (
 				<h3 className="font-light text-neutral-600 text-lg mt-[0.25vh]">
 					{subtitle}

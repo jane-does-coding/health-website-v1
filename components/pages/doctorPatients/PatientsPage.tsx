@@ -1,14 +1,21 @@
+"use client";
+import useConnectModal from "@/app/hooks/useConnectModal";
 import { SafeUser } from "@/app/types/SafeUser";
 import React from "react";
 
 const PatientsPage = ({ currentUser }: { currentUser: SafeUser }) => {
+	const connectModal = useConnectModal();
+
 	return (
 		<div className="mt-[3vh] w-full">
 			<h2 className="text-[5vh] mb-[2vh] flex items-center justify-between w-full">
 				Patients
-				<span className="px-[2vw] py-[1vh] text-[2vh] rounded-[2vh] bg-neutral-900 text-white">
+				<button
+					onClick={() => connectModal.onOpen()}
+					className="px-[2vw] py-[1vh] text-[2vh] rounded-[2vh] bg-neutral-900 text-white cursor-pointer"
+				>
 					Add Patient +
-				</span>
+				</button>
 			</h2>
 			<div className="flex flex-col  border-t-1 border-neutral-400">
 				{currentUser.connectedUsers.map((user, i) => (

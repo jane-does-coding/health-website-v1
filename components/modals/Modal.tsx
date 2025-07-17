@@ -6,6 +6,7 @@ import Button from "./Button";
 
 interface ModalProps {
 	isOpen?: boolean;
+	wide: boolean;
 	onClose: () => void;
 	onSubmit: () => void;
 	title?: string;
@@ -19,6 +20,7 @@ interface ModalProps {
 
 const Modal = ({
 	isOpen,
+	wide,
 	onClose,
 	onSubmit,
 	title,
@@ -60,8 +62,16 @@ const Modal = ({
 
 	return (
 		<>
-			<div className="justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70 backdrop-blur-md h-screen ">
-				<div className="relative w-full md:w-[55vw] xl:w-[50vw] my-6 mx-auto h-screen lg:h-auto md:h-auto overflow-y-hidden">
+			<div
+				className={`justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70 backdrop-blur-md h-screen`}
+			>
+				<div
+					className={`relative ${
+						wide
+							? "w-full md:w-[55vw] xl:w-[50vw]"
+							: "w-full md:w-[45vw] xl:w-[40vw]"
+					} my-6 mx-auto h-screen lg:h-auto md:h-auto overflow-y-hidden`}
+				>
 					{/* CONTENT */}
 					<div
 						className={`translate duration-300 h-full ${

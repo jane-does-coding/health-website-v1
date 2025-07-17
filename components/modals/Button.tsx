@@ -26,7 +26,7 @@ const Button = ({
 		<button
 			disabled={disabled}
 			onClick={onClick}
-			className={`bg-black text-white w-full flex flex-row items-center justify-center relative hover:opacity-90 transition 
+			className={`bg-black text-white w-full flex flex-row items-center justify-center relative hover:opacity-90 transition cursor-pointer
       ${small ? "p-2 text-sm" : "p-4"}
       ${rounded ? "rounded-full" : " rounded-[1.75vw]"}
       `}

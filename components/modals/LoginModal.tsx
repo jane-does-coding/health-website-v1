@@ -104,6 +104,7 @@ const LoginModal = () => {
 	return (
 		<Modal
 			disabled={isLoading}
+			wide
 			isOpen={loginModal.isOpen}
 			title="Login"
 			actionLabel="Login"

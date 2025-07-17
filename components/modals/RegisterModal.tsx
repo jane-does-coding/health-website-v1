@@ -141,6 +141,7 @@ const RegisterModal = () => {
 		<Modal
 			disabled={isLoading}
 			isOpen={registerModal.isOpen}
+			wide
 			title="Register"
 			actionLabel="Register"
 			onClose={registerModal.onClose}
