@@ -1,0 +1,84 @@
+"use client";
+import axios, { AxiosError } from "axios";
+import { useState } from "react";
+import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
+import Modal from "./Modal";
+import Heading from "./Heading";
+import Input from "../Inputs/Input";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import useUnconnectModal from "@/app/hooks/useUnconnectModal";
+
+const UnconnectModal = () => {
+	const unconnectModal = useUnconnectModal();
+	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter();
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm<FieldValues>({
+		defaultValues: {
+			code: "",
+		},
+	});
+
+	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+		setIsLoading(true);
+
+		try {
+			const res = await axios.delete("/api/connect", {
+				data: { code: data.code },
+			});
+
+			if (res.data.success) {
+				toast.success("User disconnected.");
+				unconnectModal.onClose(); // reuse or replace
+				reset();
+				router.refresh();
+			}
+		} catch (err) {
+			const error = err as AxiosError<{ error: string }>;
+			toast.error(error.response?.data?.error || "Something went wrong");
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	const bodyContent = (
+		<div className="flex flex-col gap-[2vh] py-[3vh] px-[1vw]">
+			<Heading title="Remove a user" subtitle="Enter their code below." />
+			<Input
+				id="code"
+				label="User Code"
+				disabled={isLoading}
+				errors={errors}
+				required
+				register={register}
+			/>
+		</div>
+	);
+
+	const footerContent = <div className="py-[2vh]"></div>;
+
+	return (
+		<Modal
+			disabled={isLoading}
+			isOpen={unconnectModal.isOpen}
+			title="Remove • Connection"
+			actionLabel="Remove a User"
+			onClose={() => {
+				unconnectModal.onClose();
+				reset();
+			}}
+			onSubmit={handleSubmit(onSubmit)}
+			body={bodyContent}
+			footer={footerContent}
+			wide={false}
+		/>
+	);
+};
+
+export default UnconnectModal;

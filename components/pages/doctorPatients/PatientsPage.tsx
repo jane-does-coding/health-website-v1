@@ -1,10 +1,12 @@
 "use client";
 import useConnectModal from "@/app/hooks/useConnectModal";
+import useUnconnectModal from "@/app/hooks/useUnconnectModal";
 import { SafeUser } from "@/app/types/SafeUser";
 import React from "react";
 
 const PatientsPage = ({ currentUser }: { currentUser: SafeUser }) => {
 	const connectModal = useConnectModal();
+	const unconnectModal = useUnconnectModal();
 
 	return (
 		<div className="mt-[3vh] w-full">
@@ -34,9 +36,12 @@ const PatientsPage = ({ currentUser }: { currentUser: SafeUser }) => {
 							<div className="font-semibold text-black border-1 border-neutral-900 text-[2vh] rounded-full py-[0.5vh] px-[2.25vw]">
 								0 Updates
 							</div>
-							<div className="bg-red-300 font-bold text-red-950 text-[2vh] rounded-[1.5vh] py-[0.5vh] px-[2.25vw] ml-[2vw]">
+							<button
+								onClick={() => unconnectModal.onOpen()}
+								className="bg-red-300 font-bold text-red-950 text-[2vh] rounded-[1.5vh] py-[0.5vh] px-[2.25vw] ml-[2vw] cursor-pointer"
+							>
 								Delete
-							</div>
+							</button>
 						</div>
 					</div>
 				))}
