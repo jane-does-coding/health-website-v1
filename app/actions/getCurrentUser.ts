@@ -24,6 +24,7 @@ export default async function getCurrentUser() {
 				connectionsTo: {
 					include: { from: true },
 				},
+				symptoms: true,
 			},
 		});
 

@@ -19,6 +19,7 @@ export default async function getUserById(params: IParams) {
 				connectionsTo: {
 					include: { from: true },
 				},
+				symptoms: true,
 			},
 		});
 
