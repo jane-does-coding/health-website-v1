@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeUser } from "@/app/types/SafeUser";
-import PatientProfile from "./PatientProfile";
-import DoctorProfile from "./DoctorProfile";
+import PatientProfilePage from "./PatientProfilePage";
+import DoctorProfilePage from "./DoctorProfilePage";
 
 interface ProfilePageProps {
 	currentUser: SafeUser;
@@ -11,9 +11,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ currentUser }) => {
 	return (
 		<div className="flex items-start justify-start">
 			{currentUser.access == "patient" ? (
-				<PatientProfile currentUser={currentUser} />
+				<PatientProfilePage currentUser={currentUser} />
 			) : (
-				<DoctorProfile currentUser={currentUser} />
+				<DoctorProfilePage currentUser={currentUser} />
 			)}
 		</div>
 	);
