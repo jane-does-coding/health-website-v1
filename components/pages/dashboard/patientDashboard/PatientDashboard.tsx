@@ -5,6 +5,7 @@ import MediblobChat from "./MediblobChat";
 import { SafeUser } from "@/app/types/SafeUser";
 import SymptomsView from "../../doctorPatientView/SymptomsView";
 import SymptomForm from "./SymptomForm";
+import DoctorProfilePriview from "./DoctorProfilePriview";
 
 const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 	console.log(currentUser);
@@ -20,14 +21,7 @@ const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 					</h1>
 					<SymptomsView user={currentUser} />
 					<SymptomForm user={currentUser} />
-					<h3 className="mt-[2vh]">Doctor:</h3>
-					<ul className="list-disc ml-5">
-						{currentUser.connectedUsers.map((user, i) => (
-							<li key={i}>
-								{user.name} ({user.email})
-							</li>
-						))}
-					</ul>
+					<DoctorProfilePriview user={currentUser} />
 				</div>
 				<div className="w-3/10">
 					<MediblobChat />
