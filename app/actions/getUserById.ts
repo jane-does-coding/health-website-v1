@@ -26,7 +26,11 @@ export default async function getUserById(params: IParams) {
 		if (!user) return null;
 
 		return user;
-	} catch (error: any) {
-		throw new Error(error);
+	} catch (error) {
+		if (error instanceof Error) {
+			throw new Error(error.message);
+		} else {
+			throw new Error("Unknown error occurred while fetching user");
+		}
 	}
 }
