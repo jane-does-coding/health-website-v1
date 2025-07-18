@@ -8,6 +8,20 @@ _A shared medical tracking portal that connects patients and doctors through sma
 
 ---
 
+## Completed
+
+### Doctor
+
+- ✅ Register/Login
+- ✅ Add/remove patients via **Patient Code**
+- ✅ View patient symptoms
+
+### Patient
+
+- ✅ Register/Login
+- ✅ View/Add symptoms
+- ✅ Chat with Mediblob
+
 ## 👥 User Roles
 
 ### 👩‍⚕️ Doctor Dashboard
