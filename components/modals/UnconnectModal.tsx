@@ -57,7 +57,7 @@ const UnconnectModal = () => {
 	};
 
 	const bodyContent = (
-		<div className="flex flex-col gap-[2vh] py-[3vh] px-[1vw]">
+		<div className="flex flex-col gap-[2vh] py-[2vh] px-[1vw]">
 			<Heading
 				title={`Remove ${selectedUser?.name || "a user"}`}
 				subtitle={`Type the code to confirm removal.`}
@@ -94,7 +94,7 @@ const UnconnectModal = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
 			footer={footerContent}
-			wide={false}
+			wide
 		/>
 	);
 };

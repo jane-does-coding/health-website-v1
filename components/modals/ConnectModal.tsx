@@ -35,7 +35,7 @@ const ConnectModal = () => {
 				toast.success("User connected successfully!");
 				connectModal.onClose();
 				reset();
-				router.refresh(); // refresh dashboard
+				router.refresh();
 			}
 		} catch (err) {
 			const error = err as AxiosError<{ error: string }>;
@@ -46,7 +46,7 @@ const ConnectModal = () => {
 	};
 
 	const bodyContent = (
-		<div className="flex flex-col gap-[2vh] py-[3vh] px-[1vw]">
+		<div className="flex flex-col gap-[2vh] py-[1vh] px-[1vw]">
 			<Heading
 				title="Enter a code"
 				subtitle="Enter a code to connect a patient."
@@ -73,7 +73,7 @@ const ConnectModal = () => {
 			actionLabel="Add a User"
 			onClose={() => {
 				connectModal.onClose();
-				reset(); // Clear form
+				reset();
 			}}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
