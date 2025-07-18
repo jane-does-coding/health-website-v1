@@ -2,7 +2,6 @@ import { SafeUser } from "@/app/types/SafeUser";
 import React from "react";
 import Heading from "../dashboard/Heading";
 import DoctorNavbar from "../dashboard/doctorDashboard/DoctorNavbar";
-import { FaStar } from "react-icons/fa";
 
 const PatientProfile = ({ currentUser }: { currentUser: SafeUser }) => {
 	return (
