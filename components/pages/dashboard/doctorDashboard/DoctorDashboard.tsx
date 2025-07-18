@@ -4,6 +4,7 @@ import { SafeUser } from "@/app/types/SafeUser";
 import ConnectBox from "./ConnectBox";
 import DoctorNavbar from "./DoctorNavbar";
 import PatientsList from "./PatientsList";
+import NoPatients from "../../doctorPatients/NoPatients";
 
 const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 	console.log(currentUser);
@@ -18,7 +19,16 @@ const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 						{currentUser.name}, {currentUser.access}
 					</h1>
 				*/}
-					<PatientsList currentUser={currentUser} />
+					{currentUser.connectedUsers.length > 0 ? (
+						<PatientsList currentUser={currentUser} />
+					) : (
+						<>
+							<h2 className="text-[5vh] mt-[2vh] pb-[1vh] border-b-2 border-neutral-300">
+								Patients
+							</h2>
+							<NoPatients />
+						</>
+					)}
 				</div>
 				<div className="w-5/20"></div>
 			</div>

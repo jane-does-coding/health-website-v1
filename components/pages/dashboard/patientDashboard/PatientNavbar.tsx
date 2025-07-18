@@ -35,7 +35,10 @@ const PatientNavbar = () => {
 						</span>
 					</Link>
 
-					<Link href={"/"} className="relative group flex justify-center">
+					<Link
+						href={"/profile"}
+						className="relative group flex justify-center"
+					>
 						<CgProfile className="text-[4vh]" />
 						<span
 							className="absolute left-full ml-2 top-1/2 -translate-y-1/2 whitespace-nowrap
