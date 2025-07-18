@@ -12,6 +12,10 @@ model User {
   name           String
   username       String   
   access         String   
+  bio            String?   
+  tagline            String?   
+  yearsInField            Int?   
+  Degree            String?   
   code           String   @unique 
   email          String   @unique
   hashedPassword String
