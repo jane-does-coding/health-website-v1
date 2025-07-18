@@ -1,18 +1,40 @@
+// app/(pages)/patients/[userId]/page.tsx
+
 import React from "react";
 import getUserById from "@/app/actions/getUserById";
 import PatientPage from "@/components/pages/doctorPatientView/PatientPage";
 import { SafeUser } from "@/app/types/SafeUser";
+import type { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
-	params: { userId: string };
+	params: Promise<{ userId: string }>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-const Page = async ({ params }: Props) => {
-	const userId = params.userId;
+export async function generateMetadata(
+	{ params }: Props,
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+	const { userId } = await params;
 
 	const user = await getUserById({ userId });
 
-	if (!user) return null;
+	const previousImages = (await parent).openGraph?.images || [];
+
+	return {
+		title: user ? `${user.name}'s Profile` : "Patient Not Found",
+		openGraph: {
+			images: ["/default-og.jpg", ...previousImages],
+		},
+	};
+}
+
+export default async function Page({ params }: Props) {
+	const { userId } = await params;
+
+	const user = await getUserById({ userId });
+
+	if (!user) return <div>User not found</div>;
 
 	const connectedUsers = [
 		...(user.connectionsFrom || []).map((c) => c.to),
@@ -29,6 +51,4 @@ const Page = async ({ params }: Props) => {
 			<PatientPage user={safeUser} />
 		</div>
 	);
-};
-
-export default Page;
+}
