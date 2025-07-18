@@ -52,7 +52,7 @@ const MediblobChat = () => {
 		return (
 			<div className="w-full border-2 border-black min-h-[55vh] items-center justify-center rounded-[10vh] flex flex-col px-[3vw] pt-[2vh] pb-[5vh]">
 				<h2 className="text-[3.5vh] font-medium mb-[2vh]">MediBlob</h2>
-				<img src="/mediblob.png" alt="MediBlob" />
+				<img src="/mediblob.png" alt="MediBlob" className="w-[70%]" />
 				<p className="text-center font-light mt-[3vh] text-[2vh]">
 					MediBlob is an AI you can chat with while waiting for your doctor’s
 					response.

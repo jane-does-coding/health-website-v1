@@ -12,6 +12,10 @@ model User {
   name           String
   username       String   
   access         String   
+  bio            String?   
+  tagline            String?   
+  yearsInField            Int?   
+  Degree            String?   
   code           String   @unique 
   email          String   @unique
   hashedPassword String
@@ -20,6 +24,8 @@ model User {
 
   connectionsFrom Connection[] @relation("ConnectionsFrom")
   connectionsTo   Connection[] @relation("ConnectionsTo")
+
+  symptoms     Symptom[] 
 }
 
 model Connection {
@@ -32,4 +38,18 @@ model Connection {
   toId   String @db.ObjectId
 
   createdAt DateTime @default(now())
+}
+
+model Symptom {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  symptom   String
+  level     SymptomLevel
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime @default(now())
+}
+
+enum SymptomLevel {
+  mild
+  severe
 }
