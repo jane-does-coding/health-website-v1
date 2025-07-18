@@ -8,12 +8,11 @@ type Props = {
 };
 
 const Page = async ({ params }: Props) => {
-	const paramsPassed = await params;
-	const userId = paramsPassed.userId;
+	const userId = params.userId;
 
 	const user = await getUserById({ userId });
 
-	if (!user) return;
+	if (!user) return null;
 
 	const connectedUsers = [
 		...(user.connectionsFrom || []).map((c) => c.to),
