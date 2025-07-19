@@ -56,7 +56,7 @@ export default async function Page({ params }: Props) {
 		...(user.connectionsTo ?? []).map((c) => c.from),
 	];
 
-	const { hashedPassword, ...userWithoutPassword } = user;
+	const { hashedPassword: _, ...userWithoutPassword } = user;
 
 	const safeUser: SafeUser = {
 		...userWithoutPassword,
