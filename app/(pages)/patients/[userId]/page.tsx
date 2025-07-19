@@ -2,21 +2,18 @@ import React from "react";
 import getUserById from "@/app/actions/getUserById";
 import PatientPage from "@/components/pages/doctorPatientView/PatientPage";
 import type { Metadata, ResolvingMetadata } from "next";
-import type { User } from "@prisma/client";
+import type { SafeUser as GlobalSafeUser } from "@/app/types/SafeUser"; // <-- this is the one PatientPage expects
 
 type Props = {
 	params: Promise<{ userId: string }>;
 	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-type SafeUser = Omit<User, "hashedPassword"> & {
-	connectedUsers: User[];
-	symptoms?: {
-		id: string;
-		symptom: string;
-		level: "mild" | "severe";
-		createdAt: Date;
-	}[];
+type SafeUser = Omit<
+	GlobalSafeUser,
+	"connectedUsers" | "prescribedMedications"
+> & {
+	connectedUsers: GlobalSafeUser["connectedUsers"];
 	prescribedMedications?: {
 		id: string;
 		title: string;
@@ -34,8 +31,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 	const { userId } = await params;
 	const user = await getUserById({ userId });
-
-	const previousImages = (await parent).openGraph?.images ?? [];
+	const previousImages = (await parent).openGraph?.images || [];
 
 	return {
 		title: user ? `${user.name}'s Profile` : "Patient Not Found",
@@ -51,31 +47,31 @@ export default async function Page({ params }: Props) {
 
 	if (!user) return <div>User not found</div>;
 
-	const connectedUsers: User[] = [
-		...(user.connectionsFrom ?? []).map((c) => c.to),
-		...(user.connectionsTo ?? []).map((c) => c.from),
+	const connectedUsers = [
+		...(user.connectionsFrom || []).map((c) => c.to),
+		...(user.connectionsTo || []).map((c) => c.from),
 	];
 
-	const { hashedPassword: _, ...userWithoutPassword } = user;
+	const { hashedPassword, ...userWithoutPassword } = user;
 
 	const safeUser: SafeUser = {
 		...userWithoutPassword,
 		connectedUsers,
-		symptoms: user.symptoms,
-		prescribedMedications: user.prescribedMedications?.map((med) => ({
-			id: med.id,
-			title: med.title,
-			dosage: med.dosage,
-			instructions: med.instructions ?? undefined,
-			startDate: med.startDate.toISOString(),
-			endDate: med.endDate.toISOString(),
-			createdAt: med.createdAt.toISOString(),
+		prescribedMedications: user.prescribedMedications?.map((m) => ({
+			id: m.id,
+			title: m.title,
+			dosage: m.dosage,
+			instructions: m.instructions ?? undefined,
+			startDate: m.startDate.toISOString(),
+			endDate: m.endDate.toISOString(),
+			createdAt: m.createdAt.toISOString(),
 		})),
+		symptoms: user.symptoms,
 	};
 
 	return (
 		<div>
-			<PatientPage user={safeUser} />
+			<PatientPage user={safeUser as GlobalSafeUser} />
 		</div>
 	);
 }
