@@ -1,11 +1,11 @@
 "use client";
 import useConnectModal from "@/app/hooks/useConnectModal";
 import useUnconnectModal from "@/app/hooks/useUnconnectModal";
-import { SafeUser } from "@/app/types/SafeUser";
-import React from "react";
+/* import { SafeUser } from "@/app/types/SafeUser";
+ */ import React from "react";
 import NoPatients from "./NoPatients";
 
-const PatientsPage = ({ currentUser }: { currentUser: SafeUser }) => {
+const PatientsPage = ({ currentUser }: { currentUser: any }) => {
 	const connectModal = useConnectModal();
 	const unconnectModal = useUnconnectModal();
 
@@ -22,7 +22,7 @@ const PatientsPage = ({ currentUser }: { currentUser: SafeUser }) => {
 			</h2>
 			<div className="flex flex-col  border-t-1 border-neutral-400">
 				{currentUser.connectedUsers.length > 0 ? (
-					currentUser.connectedUsers.map((user, i) => (
+					currentUser.connectedUsers.map((user: any, i: number) => (
 						<div
 							className="flex w-full items-center justify-between py-[2vh] px-[1vw] border-b-1 border-neutral-400"
 							key={i}
