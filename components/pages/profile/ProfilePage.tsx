@@ -4,7 +4,7 @@ import PatientProfilePage from "./PatientProfilePage";
 import DoctorProfilePage from "./DoctorProfilePage";
 
 interface ProfilePageProps {
-	currentUser: SafeUser;
+	currentUser: any;
 }
 
 const ProfilePage: React.FC<ProfilePageProps> = ({ currentUser }) => {
