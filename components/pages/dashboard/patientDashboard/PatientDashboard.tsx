@@ -6,6 +6,7 @@ import { SafeUser } from "@/app/types/SafeUser";
 import SymptomsView from "../../doctorPatientView/SymptomsView";
 import SymptomForm from "./SymptomForm";
 import DoctorProfilePriview from "./DoctorProfilePriview";
+import MedicationTable from "./MedicationTable";
 
 const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 	console.log(currentUser);
@@ -21,6 +22,9 @@ const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 					</h1>
 					<SymptomsView user={currentUser} />
 					<SymptomForm user={currentUser} />
+					<MedicationTable
+						medications={currentUser.prescribedMedications || []}
+					/>
 					<DoctorProfilePriview user={currentUser} />
 				</div>
 				<div className="w-3/10">

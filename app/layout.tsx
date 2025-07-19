@@ -6,6 +6,7 @@ import LoginModal from "@/components/modals/LoginModal";
 import ToasterProvider from "./providers/ToasterProvider";
 import ConnectModal from "@/components/modals/ConnectModal";
 import UnconnectModal from "@/components/modals/UnconnectModal";
+import AssignMedicationModal from "@/components/modals/MedicationsModal";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
 				<LoginModal />
 				<ConnectModal />
 				<UnconnectModal />
+				<AssignMedicationModal />
 				{children}
 				<ToasterProvider />
 			</body>

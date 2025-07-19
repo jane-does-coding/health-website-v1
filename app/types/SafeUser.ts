@@ -1,4 +1,3 @@
-// types/SafeUser.ts
 import { User } from "@prisma/client";
 
 export type SafeUser = Omit<User, "hashedPassword"> & {
@@ -8,5 +7,14 @@ export type SafeUser = Omit<User, "hashedPassword"> & {
 		symptom: string;
 		level: "mild" | "severe";
 		createdAt: Date;
+	}[];
+	prescribedMedications?: {
+		id: string;
+		title: string;
+		dosage: string;
+		instructions?: string;
+		startDate: string;
+		endDate: string;
+		createdAt: string;
 	}[];
 };
