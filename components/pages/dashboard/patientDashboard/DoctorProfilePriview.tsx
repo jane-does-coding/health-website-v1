@@ -1,7 +1,7 @@
 import { SafeUser } from "@/app/types/SafeUser";
 import React from "react";
 
-const DoctorProfilePriview = ({ user }: { user: SafeUser }) => {
+const DoctorProfilePriview = ({ user }: { userany }) => {
 	return (
 		<div className="mt-[6vh]">
 			<ul className="list-disc ml-5">

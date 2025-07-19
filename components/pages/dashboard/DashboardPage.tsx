@@ -4,7 +4,7 @@ import DoctorDashboard from "./doctorDashboard/DoctorDashboard";
 import { SafeUser } from "@/app/types/SafeUser";
 
 interface DashboardPageProps {
-	currentUser: SafeUser;
+	currentUser: any;
 }
 
 const DashboardPage: React.FC<DashboardPageProps> = ({ currentUser }) => {

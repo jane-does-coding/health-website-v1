@@ -8,7 +8,7 @@ import SymptomForm from "./SymptomForm";
 import DoctorProfilePriview from "./DoctorProfilePriview";
 import MedicationTable from "./MedicationTable";
 
-const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
+const PatientDashboard = ({ currentUser }: { currentUserany }) => {
 	console.log(currentUser);
 	return (
 		<div className="flex">

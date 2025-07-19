@@ -1,7 +1,7 @@
 import { SafeUser } from "@/app/types/SafeUser";
 import React from "react";
 
-const PatientsList = ({ currentUser }: { currentUser: SafeUser }) => {
+const PatientsList = ({ currentUser }: { currentUserany }) => {
 	return (
 		<div className="mt-[3vh]">
 			<h2 className="text-[5vh] mb-[2vh]">Patients</h2>

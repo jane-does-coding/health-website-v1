@@ -1,7 +1,7 @@
 import { SafeUser } from "@/app/types/SafeUser";
 import React from "react";
 
-const SymptomsView = ({ user }: { user: SafeUser }) => {
+const SymptomsView = ({ user }: { userany }) => {
 	if (!user || !user.symptoms || user.symptoms.length === 0) {
 		return (
 			<div className="mt-[3vh]">

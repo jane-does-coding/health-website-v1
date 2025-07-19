@@ -7,7 +7,7 @@ import SymptomsView from "./SymptomsView";
 import MedicationTable from "../dashboard/patientDashboard/MedicationTable";
 import useMedicationsModal from "@/app/hooks/useMedicationsModal";
 
-const PatientPage = ({ user }: { user: SafeUser }) => {
+const PatientPage = ({ user }: { userany }) => {
 	const medicationModal = useMedicationsModal();
 
 	return (

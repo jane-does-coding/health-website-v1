@@ -4,7 +4,7 @@ import Heading from "../dashboard/Heading";
 import DoctorNavbar from "../dashboard/doctorDashboard/DoctorNavbar";
 import { FaStar } from "react-icons/fa";
 
-const DoctorProfilePage = ({ currentUser }: { currentUser: SafeUser }) => {
+const DoctorProfilePage = ({ currentUser }: { currentUserany }) => {
 	return (
 		<div className="flex">
 			<DoctorNavbar />

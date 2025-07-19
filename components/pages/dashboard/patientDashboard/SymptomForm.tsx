@@ -9,7 +9,7 @@ type FormValues = {
 	level: "severe" | "mild";
 };
 
-const SymptomForm = ({ user }: { user: SafeUser }) => {
+const SymptomForm = ({ user }: { userany }) => {
 	const { register, handleSubmit } = useForm<FormValues>();
 
 	const onSubmit = async (data: FormValues) => {
