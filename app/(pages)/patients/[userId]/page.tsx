@@ -41,7 +41,7 @@ export default async function Page({ params }: Props) {
 		...(user.connectionsTo || []).map((c) => c.from),
 	];
 
-	const safeUser: SafeUser = {
+	const safeUser: any = {
 		...user,
 		connectedUsers,
 	};
