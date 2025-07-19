@@ -1,14 +1,29 @@
-// app/(pages)/patients/[userId]/page.tsx
-
 import React from "react";
 import getUserById from "@/app/actions/getUserById";
 import PatientPage from "@/components/pages/doctorPatientView/PatientPage";
-import { SafeUser } from "@/app/types/SafeUser";
 import type { Metadata, ResolvingMetadata } from "next";
+import type { SafeUser as GlobalSafeUser } from "@/app/types/SafeUser"; // <-- this is the one PatientPage expects
 
 type Props = {
 	params: Promise<{ userId: string }>;
 	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+// LOCAL type — keep this
+type SafeUser = Omit<
+	GlobalSafeUser,
+	"connectedUsers" | "prescribedMedications"
+> & {
+	connectedUsers: GlobalSafeUser["connectedUsers"];
+	prescribedMedications?: {
+		id: string;
+		title: string;
+		dosage: string;
+		instructions?: string;
+		startDate: string;
+		endDate: string;
+		createdAt: string;
+	}[];
 };
 
 export async function generateMetadata(
@@ -16,9 +31,7 @@ export async function generateMetadata(
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
 	const { userId } = await params;
-
 	const user = await getUserById({ userId });
-
 	const previousImages = (await parent).openGraph?.images || [];
 
 	return {
@@ -31,7 +44,6 @@ export async function generateMetadata(
 
 export default async function Page({ params }: Props) {
 	const { userId } = await params;
-
 	const user = await getUserById({ userId });
 
 	if (!user) return <div>User not found</div>;
@@ -41,14 +53,26 @@ export default async function Page({ params }: Props) {
 		...(user.connectionsTo || []).map((c) => c.from),
 	];
 
+	const { hashedPassword, ...userWithoutPassword } = user;
+
 	const safeUser: SafeUser = {
-		...user,
+		...userWithoutPassword,
 		connectedUsers,
+		prescribedMedications: user.prescribedMedications?.map((m) => ({
+			id: m.id,
+			title: m.title,
+			dosage: m.dosage,
+			instructions: m.instructions ?? undefined,
+			startDate: m.startDate.toISOString(),
+			endDate: m.endDate.toISOString(),
+			createdAt: m.createdAt.toISOString(),
+		})),
+		symptoms: user.symptoms,
 	};
 
 	return (
 		<div>
-			<PatientPage user={safeUser} />
+			<PatientPage user={safeUser as GlobalSafeUser} />
 		</div>
 	);
 }
