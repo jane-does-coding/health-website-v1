@@ -1,7 +1,7 @@
 import { SafeUser } from "@/app/types/SafeUser";
 import React from "react";
 
-const SymptomsView = ({ user }: { userany }) => {
+const SymptomsView = ({ user }: { user: any }) => {
 	if (!user || !user.symptoms || user.symptoms.length === 0) {
 		return (
 			<div className="mt-[3vh]">
@@ -26,7 +26,7 @@ const SymptomsView = ({ user }: { userany }) => {
 				</div>
 			</div>
 			<div className="flex gap-x-[2vw] gap-y-[2vh] flex-wrap mt-[3vh]">
-				{user.symptoms.map((symptom, i) => (
+				{user.symptoms.map((symptom: any, i: number) => (
 					<div
 						key={i}
 						className={`rounded-full border-1 border-black px-[3vw] py-[1vh] text-[2.5vh] ${

@@ -3,7 +3,7 @@ import React from "react";
 import Heading from "../dashboard/Heading";
 import DoctorNavbar from "../dashboard/doctorDashboard/DoctorNavbar";
 
-const PatientProfilePage = ({ currentUser }: { currentUserany }) => {
+const PatientProfilePage = ({ currentUser }: { currentUser: any }) => {
 	return (
 		<div className="flex">
 			<DoctorNavbar />

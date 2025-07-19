@@ -1,5 +1,3 @@
-// app/(pages)/patients/[userId]/page.tsx
-
 import React from "react";
 import getUserById from "@/app/actions/getUserById";
 import PatientPage from "@/components/pages/doctorPatientView/PatientPage";

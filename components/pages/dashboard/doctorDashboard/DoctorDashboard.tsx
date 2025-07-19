@@ -5,7 +5,7 @@ import DoctorNavbar from "./DoctorNavbar";
 import PatientsList from "./PatientsList";
 import NoPatients from "../../doctorPatients/NoPatients";
 
-const DoctorDashboard = ({ currentUser }: { currentUserany }) => {
+const DoctorDashboard = ({ currentUser }: { currentUser: any }) => {
 	console.log(currentUser);
 	return (
 		<div className="flex">
