@@ -22,10 +22,12 @@ const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 					</h1>
 					<SymptomsView user={currentUser} />
 					<SymptomForm user={currentUser} />
-					<DoctorProfilePriview user={currentUser} />
+					<h2 className="text-[3.5vh] font-light mt-[4vh]">Medications</h2>
+
 					<MedicationTable
 						medications={currentUser.prescribedMedications || []}
 					/>
+					<DoctorProfilePriview user={currentUser} />
 				</div>
 				<div className="w-3/10">
 					<MediblobChat />

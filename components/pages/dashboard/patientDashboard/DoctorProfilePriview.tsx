@@ -3,7 +3,7 @@ import React from "react";
 
 const DoctorProfilePriview = ({ user }: { user: SafeUser }) => {
 	return (
-		<div className="mt-[6vh]">
+		<div className="mt-[6vh] mb-[3vh]">
 			<ul className="list-disc ml-5">
 				{user.connectedUsers.map((user, i) => (
 					<div

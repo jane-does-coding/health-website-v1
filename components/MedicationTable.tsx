@@ -37,9 +37,7 @@ const MedicationTable = ({
 	}
 
 	return (
-		<div className="mt-8">
-			<h2 className="text-[3.5vh] font-light mb-[2vh]">Medications</h2>
-
+		<div className="mt-4">
 			{/* Header */}
 			<div className="flex font-semibold text-left border-black border-1 rounded-t-[1.5vh] overflow-hidden bg-gray-100">
 				<div className="w-6/10 p-[1.5vh] pl-[2vw] border-r border-black text-[2.25vh] ">
