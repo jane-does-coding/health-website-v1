@@ -1,5 +1,4 @@
-// types/SafeUser.ts
-import { User } from "@prisma/client";
+import { Medication, User } from "@prisma/client";
 
 export type SafeUser = Omit<User, "hashedPassword"> & {
 	connectedUsers: User[];
@@ -9,4 +8,6 @@ export type SafeUser = Omit<User, "hashedPassword"> & {
 		level: "mild" | "severe";
 		createdAt: Date;
 	}[];
+	prescribedMedications?: Medication[];
+	assignedMedications?: Medication[];
 };

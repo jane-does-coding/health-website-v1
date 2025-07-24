@@ -20,6 +20,8 @@ export default async function getUserById(params: IParams) {
 					include: { from: true },
 				},
 				symptoms: true,
+				prescribedMedications: true,
+				assignedMedications: true,
 			},
 		});
 

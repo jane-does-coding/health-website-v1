@@ -25,6 +25,8 @@ export default async function getCurrentUser() {
 					include: { from: true },
 				},
 				symptoms: true,
+				prescribedMedications: true,
+				assignedMedications: true,
 			},
 		});
 
