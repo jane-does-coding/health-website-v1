@@ -37,7 +37,7 @@ const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 					<DoctorProfilePriview user={currentUser} />
 				</div>
 				<div className="w-3/10">
-					<MediblobChat />
+					<MediblobChat currentUser={currentUser} />
 					<h2 className="text-[5vh] mt-[3vh] pb-[1vh] border-b-2 border-neutral-300">
 						Events
 					</h2>
