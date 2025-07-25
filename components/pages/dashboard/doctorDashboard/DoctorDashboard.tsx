@@ -1,12 +1,17 @@
+"use client";
 import React from "react";
 import Heading from "../Heading";
 import { SafeUser } from "@/app/types/SafeUser";
 import DoctorNavbar from "./DoctorNavbar";
 import PatientsList from "./PatientsList";
 import NoPatients from "../../doctorPatients/NoPatients";
+import useEventModal from "@/app/hooks/useEventModal";
+import EventsList from "../EventsList";
 
 const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 	console.log(currentUser);
+
+	const createEventModal = useEventModal();
 	return (
 		<div className="flex">
 			<DoctorNavbar />
@@ -28,6 +33,13 @@ const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 							<NoPatients />
 						</>
 					)}
+					<h2 className="text-[5vh] mt-[5vh] pb-[1vh] border-b-2 border-neutral-300">
+						Events
+					</h2>
+					<button onClick={() => createEventModal.onOpen(currentUser.id)}>
+						Create an Event
+					</button>
+					<EventsList currentUser={currentUser} />
 				</div>
 				<div className="w-5/20"></div>
 			</div>

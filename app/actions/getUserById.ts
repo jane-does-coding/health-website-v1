@@ -22,6 +22,8 @@ export default async function getUserById(params: IParams) {
 				symptoms: true,
 				prescribedMedications: true,
 				assignedMedications: true,
+				doctorEvents: true,
+				patientEvents: true,
 			},
 		});
 
