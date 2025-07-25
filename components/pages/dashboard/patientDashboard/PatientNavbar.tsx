@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { BiSolidDashboard } from "react-icons/bi";
-import { FaRegChartBar } from "react-icons/fa";
+import { FaCalendarAlt, FaRegChartBar } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { MdLogout } from "react-icons/md";
 import { signOut } from "next-auth/react";
@@ -26,12 +26,12 @@ const PatientNavbar = () => {
 					</Link>
 
 					<Link href={"/"} className="relative group flex justify-center">
-						<FaRegChartBar className="text-[4vh]" />
+						<FaCalendarAlt className="text-[4vh]" />
 						<span
 							className="absolute left-full ml-2 top-1/2 -translate-y-1/2 whitespace-nowrap
                          opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black px-[2vw] py-[0.5vh] rounded-[1vh] border-1 border-black text-[1.75vh] shadow-lg pointer-events-none"
 						>
-							Analytics
+							Calendar
 						</span>
 					</Link>
 

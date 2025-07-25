@@ -7,6 +7,7 @@ import SymptomsView from "./SymptomsView";
 import useMedicationsModal from "@/app/hooks/useMedicationModal";
 import MedicationTable from "@/components/MedicationTable";
 import { PiStarFourFill } from "react-icons/pi";
+import EventsList from "../dashboard/EventsList";
 
 const PatientPage = ({ user }: { user: SafeUser }) => {
 	const medicationModal = useMedicationsModal();
@@ -15,7 +16,7 @@ const PatientPage = ({ user }: { user: SafeUser }) => {
 		<div className="flex">
 			<DoctorNavbar />
 			<div className="w-[93.5vw] flex flex-col md:flex-row py-[5vh] px-[4vw]">
-				<div className="w-15/20 pr-[3vw]">
+				<div className="w-14/20 pr-[3vw]">
 					<Heading />
 					<h2 className="text-[3.5vh] mt-[2.5vh] font-medium">{user.name}</h2>
 
@@ -33,7 +34,7 @@ const PatientPage = ({ user }: { user: SafeUser }) => {
 					</div>
 					<MedicationTable medications={user.prescribedMedications || []} />
 				</div>
-				<div className="w-5/20">
+				<div className="w-6/20">
 					<h2 className="flex items-center justify-center gap-[1vw] text-[2.5vh] mb-[2vh]">
 						AI Summary <PiStarFourFill className="text-[2.75vh]" />
 					</h2>
@@ -42,6 +43,10 @@ const PatientPage = ({ user }: { user: SafeUser }) => {
 						Voluptates, temporibus! Assumenda quis atque voluptatem earum quidem
 						quibusdam suscipit, cumque quisquam.
 					</p>
+					<h2 className="text-[4vh] mt-[2vh] pb-[1vh] border-b-2 border-neutral-300 mb-[2vh]">
+						Events
+					</h2>
+					<EventsList currentUser={user} />
 				</div>
 			</div>
 		</div>
