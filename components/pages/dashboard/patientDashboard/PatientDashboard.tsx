@@ -12,8 +12,6 @@ import useEventModal from "@/app/hooks/useEventModal";
 import NextEventWarning from "../NextEventWarning";
 
 const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
-	currentUser;
-
 	const createEventModal = useEventModal();
 
 	return (

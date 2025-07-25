@@ -14,8 +14,6 @@ const CreateEventModal = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 
-	eventModal;
-
 	const {
 		register,
 		handleSubmit,

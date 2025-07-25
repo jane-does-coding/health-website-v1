@@ -26,7 +26,7 @@ const SymptomForm = ({ user }: { user: SafeUser }) => {
 			if (!res.ok) throw new Error("Failed to add symptom");
 
 			const result = await res.json();
-			"Symptom saved!", result;
+			console.log("Symptom saved!"), result;
 		} catch (err) {
 			console.error("Failed to submit symptom", err);
 		}

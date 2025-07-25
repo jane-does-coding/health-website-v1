@@ -11,8 +11,6 @@ import CallList from "../CallList";
 import NextEventWarning from "../NextEventWarning";
 
 const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
-	currentUser;
-
 	const createEventModal = useEventModal();
 	return (
 		<div className="flex">

@@ -13,9 +13,8 @@ function generateUserCode(length = 6) {
 
 export async function POST(req: Request) {
 	const body = await req.json();
-	body;
+	console.log(body);
 	const { email, name, password, username, access } = body;
-	body;
 	const userCode = generateUserCode();
 
 	const hashedPassword = await bcrypt.hash(password, 12);
