@@ -27,16 +27,16 @@ const EventsList = ({ currentUser }: { currentUser: SafeUser }) => {
 						key={event.id}
 						className="flex flex-col items-start justify-center py-[2.25vh] px-[3vw] rounded-[7vh] border-[1px] border-black"
 					>
-						<h2 className="text-[2.75vh] capitalize">
+						<h2 className="text-[2.75vh] capitalize font-medium">
 							{event.type} Appointment
 						</h2>
-						<p className="mt-[2.25vh]">
+						<p className="mt-[2.25vh] text-[2vh]">
 							With{" "}
 							<span className="py-[0.5vh] px-[1.75vw] rounded-full border-[1px] ml-[0.5vw]">
 								{event.patient?.name || "—"}
 							</span>
 						</p>
-						<div className="flex items-center w-full justify-between mt-[1.5vh]">
+						<div className="flex items-center w-full justify-between mt-[1.5vh] text-[2vh]">
 							<p>{date}</p>
 							<p>{time}</p>
 						</div>

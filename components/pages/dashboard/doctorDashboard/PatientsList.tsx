@@ -5,7 +5,7 @@ const PatientsList = ({ currentUser }: { currentUser: SafeUser }) => {
 	return (
 		<div className="mt-[3vh]">
 			<h2 className="text-[5vh] mb-[2vh]">Patients</h2>
-			<div className="flex flex-col  border-t-1 border-neutral-400">
+			<div className="flex flex-col  border-t-1 border-neutral-400 max-h-[40vh] overflow-scroll">
 				{currentUser.connectedUsers.map((user, i) => (
 					<div
 						className="flex w-full items-center justify-between py-[2vh] px-[1vw] border-b-1 border-neutral-400"
