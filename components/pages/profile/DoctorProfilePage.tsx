@@ -46,10 +46,7 @@ const DoctorProfilePage = ({ currentUser }: { currentUser: SafeUser }) => {
 				<div className="flex mt-[4vh]">
 					<div className="w-2/3 pr-[3vw]">
 						<p className="text-[3vh] font-extralight leading-[4vh]">
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi
-							accusantium dignissimos fuga voluptate doloremque voluptates
-							similique animi repudiandae consequuntur hic, explicabo nostrum
-							praesentium et optio, alias iste minus, aliquam totam!
+							{currentUser.bio}
 						</p>
 						<div className="flex flex-col mt-[6vh]">
 							<div className="flex">

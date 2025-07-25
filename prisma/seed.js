@@ -3,6 +3,50 @@ const bcrypt = require("bcrypt");
 
 const prisma = new PrismaClient();
 
+// Helper for random pick
+function randomChoice(arr) {
+	return arr[Math.floor(Math.random() * arr.length)];
+}
+function randomDateBetween(start, end) {
+	return new Date(
+		start.getTime() + Math.random() * (end.getTime() - start.getTime())
+	);
+}
+
+const medicationOptions = [
+	"Ibuprofen",
+	"Vitamin D",
+	"Metformin",
+	"Lisinopril",
+	"Levothyroxine",
+	"Atorvastatin",
+	"Omeprazole",
+	"Sertraline",
+	"Amoxicillin",
+];
+
+const symptomOptions = [
+	"Headache",
+	"Fatigue",
+	"Cough",
+	"Nausea",
+	"Joint pain",
+	"Anxiety",
+	"Depression",
+	"Back pain",
+	"Dizziness",
+	"Insomnia",
+];
+
+const eventNotes = [
+	"Routine check-up",
+	"Follow-up after surgery",
+	"Monthly consultation",
+	"Discuss test results",
+	"New symptoms evaluation",
+	"Treatment adjustment",
+];
+
 async function main() {
 	await prisma.event.deleteMany();
 	await prisma.medication.deleteMany();
@@ -23,7 +67,7 @@ async function main() {
 			name: "Dr. Emily Carter",
 			username: "emilyMD",
 			access: "doctor",
-			bio: "Experienced in neurology and patient-centered care.",
+			bio: "Experienced neurologist with 12+ years in patient care. Passionate about modern medicine and personalized treatment.",
 			tagline: "Healing one neuron at a time.",
 			yearsInField: 12,
 			Degree: "MD",
@@ -88,71 +132,63 @@ async function main() {
 	);
 
 	const now = new Date();
+	const startRange = new Date("2025-07-01");
+	const endRange = new Date("2025-12-31");
 
 	for (const patient of patients) {
-		await prisma.medication.createMany({
-			data: [
-				{
-					title: "Ibuprofen",
-					dosage: "200mg",
-					instructions: "Take after meals",
-					startDate: new Date("2025-07-01"),
-					endDate: new Date("2025-07-31"),
-					doctorId: doctor.id,
-					patientId: patient.id,
-				},
-				{
-					title: "Vitamin D",
-					dosage: "1000 IU",
-					instructions: "Once daily",
-					startDate: new Date("2025-06-01"),
-					endDate: new Date("2025-12-31"),
-					doctorId: doctor.id,
-					patientId: patient.id,
-				},
-			],
+		// 2 to 7 medications
+		const medCount = 2 + Math.floor(Math.random() * 6);
+		const medsData = Array.from({ length: medCount }, () => {
+			const title = randomChoice(medicationOptions);
+			const startDate = randomDateBetween(startRange, new Date("2025-08-15"));
+			const endDate = randomDateBetween(new Date("2025-08-16"), endRange);
+
+			return {
+				title,
+				dosage: `${100 + Math.floor(Math.random() * 900)}mg`,
+				instructions: "Take as directed",
+				startDate,
+				endDate,
+				doctorId: doctor.id,
+				patientId: patient.id,
+			};
 		});
 
-		await prisma.symptom.createMany({
-			data: [
-				{
-					symptom: "Headache",
-					level: "mild",
-					userId: patient.id,
-				},
-				{
-					symptom: "Fatigue",
-					level: "severe",
-					userId: patient.id,
-				},
-			],
+		await prisma.medication.createMany({ data: medsData });
+
+		// 3 to 8 symptoms
+		const symptomCount = 3 + Math.floor(Math.random() * 6);
+		const symptomsData = Array.from({ length: symptomCount }, () => ({
+			symptom: randomChoice(symptomOptions),
+			level: Math.random() > 0.5 ? "mild" : "severe",
+			userId: patient.id,
+		}));
+
+		await prisma.symptom.createMany({ data: symptomsData });
+
+		// 2 to 6 events, random dates
+		const eventCount = 2 + Math.floor(Math.random() * 5);
+		const eventsData = Array.from({ length: eventCount }, () => {
+			const dateTime = randomDateBetween(startRange, endRange);
+			return {
+				type: Math.random() > 0.5 ? "online" : "inperson",
+				zoomLink: `https://zoom.us/fake-room-${patient.id}`,
+				dateTime,
+				notes: randomChoice(eventNotes),
+				doctorId: doctor.id,
+				patientId: patient.id,
+			};
 		});
 
-		await prisma.event.createMany({
-			data: [
-				{
-					type: "online",
-					zoomLink: `https://zoom.us/fake-room-${patient.id}`,
-					dateTime: new Date(now.getTime() + 1000 * 60 * 60 * 24),
-					notes: "Routine check-up",
-					doctorId: doctor.id,
-					patientId: patient.id,
-				},
-				{
-					type: "inperson",
-					dateTime: new Date(now.getTime() - 1000 * 60 * 60 * 24 * 3),
-					notes: "Post-surgery consultation",
-					doctorId: doctor.id,
-					patientId: patient.id,
-				},
-			],
-		});
+		await prisma.event.createMany({ data: eventsData });
 	}
 }
 
 main()
 	.then(() => {
-		("✅ Seed complete with hashed passwords!");
+		console.log(
+			"✅ Seed complete with random medications, symptoms, and events!"
+		);
 		return prisma.$disconnect();
 	})
 	.catch((err) => {
