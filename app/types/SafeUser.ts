@@ -1,4 +1,4 @@
-import { Medication, User } from "@prisma/client";
+import { Event, Medication, User } from "@prisma/client";
 
 export type SafeUser = Omit<User, "hashedPassword"> & {
 	connectedUsers: User[];
@@ -10,4 +10,12 @@ export type SafeUser = Omit<User, "hashedPassword"> & {
 	}[];
 	prescribedMedications?: Medication[];
 	assignedMedications?: Medication[];
+	doctorEvents?: SafeEvent[];
+	patientEvents?: SafeEvent[];
+	userEvents?: SafeEvent[];
+};
+
+export type SafeEvent = Event & {
+	doctor?: User;
+	patient?: User;
 };

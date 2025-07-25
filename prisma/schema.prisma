@@ -28,6 +28,10 @@ model User {
   prescribedMedications Medication[] @relation("PrescribedTo")
   assignedMedications   Medication[] @relation("AssignedBy")
 
+  doctorEvents  Event[] @relation("DoctorEvents")
+  patientEvents Event[] @relation("PatientEvents")
+
+
   symptoms     Symptom[] 
 }
 
@@ -72,4 +76,25 @@ model Medication {
 
   doctor       User     @relation("AssignedBy", fields: [doctorId], references: [id])
   doctorId     String   @db.ObjectId
+}
+
+model Event {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  type      EventType
+  zoomLink  String?  
+  dateTime  DateTime
+  notes     String?
+
+  doctor    User     @relation("DoctorEvents", fields: [doctorId], references: [id])
+  doctorId  String   @db.ObjectId
+
+  patient   User     @relation("PatientEvents", fields: [patientId], references: [id])
+  patientId String   @db.ObjectId
+
+  createdAt DateTime @default(now())
+}
+
+enum EventType {
+  inPerson
+  online
 }

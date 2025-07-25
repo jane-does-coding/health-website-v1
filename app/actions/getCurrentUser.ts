@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import prisma from "@/app/libs/prismadb";
-import { User } from "@prisma/client";
+import { Event, User } from "@prisma/client";
 
 export async function getSession() {
 	return await getServerSession(authOptions);
@@ -27,6 +27,12 @@ export default async function getCurrentUser() {
 				symptoms: true,
 				prescribedMedications: true,
 				assignedMedications: true,
+				doctorEvents: {
+					include: { doctor: true, patient: true },
+				},
+				patientEvents: {
+					include: { doctor: true, patient: true },
+				},
 			},
 		});
 
@@ -37,11 +43,17 @@ export default async function getCurrentUser() {
 			...(currentUser.connectionsTo?.map((c) => c.from) || []),
 		];
 
+		const userEvents: Event[] = [
+			...(currentUser.doctorEvents || []),
+			...(currentUser.patientEvents || []),
+		];
+
 		const { ...safeUser } = currentUser;
 
 		return {
 			...safeUser,
 			connectedUsers,
+			userEvents,
 		};
 	} catch (err) {
 		console.log("[GET_CURRENT_USER_ERROR]", err);
