@@ -76,19 +76,19 @@ function CustomToolbar({
 		<div className="flex justify-between p-2">
 			<div className="space-x-2">
 				<button
-					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 font-medium"
+					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 cursor-pointer font-medium"
 					onClick={() => onNavigate("TODAY")}
 				>
 					Today
 				</button>
 				<button
-					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 font-medium"
+					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 cursor-pointer font-medium"
 					onClick={() => onNavigate("PREV")}
 				>
 					Back
 				</button>
 				<button
-					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 font-medium"
+					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 cursor-pointer font-medium"
 					onClick={() => onNavigate("NEXT")}
 				>
 					Next
@@ -97,25 +97,25 @@ function CustomToolbar({
 			<div className="font-bold">{label}</div>
 			<div className="space-x-2">
 				<button
-					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 font-medium"
+					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 cursor-pointer font-medium"
 					onClick={() => onView("month")}
 				>
 					Month
 				</button>
 				<button
-					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 font-medium"
+					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 cursor-pointer font-medium"
 					onClick={() => onView("week")}
 				>
 					Week
 				</button>
 				<button
-					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 font-medium"
+					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 cursor-pointer font-medium"
 					onClick={() => onView("day")}
 				>
 					Day
 				</button>
 				<button
-					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 font-medium"
+					className="px-[2vw] rounded-full bg-blue-100 border-2 border-blue-300 cursor-pointer font-medium"
 					onClick={() => onView("agenda")}
 				>
 					Agenda

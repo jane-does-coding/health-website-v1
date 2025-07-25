@@ -1,7 +1,8 @@
 "use client";
+import { SafeUser } from "@/app/types/SafeUser";
 import React, { useState, useEffect, useRef } from "react";
 
-const MediblobChat = () => {
+const MediblobChat = ({ currentUser }: { currentUser: SafeUser }) => {
 	const [chatStarted, setChatStarted] = useState(false);
 	const [messages, setMessages] = useState<
 		{ sender: "user" | "bot"; text: string }[]
@@ -30,7 +31,7 @@ const MediblobChat = () => {
 			const res = await fetch("/api/gemini", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ prompt: userMessage }),
+				body: JSON.stringify({ prompt: userMessage, userInfo: currentUser }),
 			});
 			const data = await res.json();
 			setMessages((prev) => [
