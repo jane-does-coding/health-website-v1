@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { BiSolidDashboard } from "react-icons/bi";
-import { FaCalendarAlt, FaRegChartBar } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { MdLogout } from "react-icons/md";
 import { signOut } from "next-auth/react";
