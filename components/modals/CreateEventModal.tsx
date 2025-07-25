@@ -14,6 +14,8 @@ const CreateEventModal = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 
+	console.log(eventModal);
+
 	const {
 		register,
 		handleSubmit,
@@ -31,6 +33,7 @@ const CreateEventModal = () => {
 
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 		setIsLoading(true);
+		data.doctorId = eventModal.userId;
 
 		try {
 			const res = await fetch("/api/events", {
@@ -91,7 +94,7 @@ const CreateEventModal = () => {
 				errors={errors}
 				register={register}
 			/>
-
+			{/* 
 			<Input
 				id="doctorId"
 				label="Doctor ID"
@@ -100,7 +103,7 @@ const CreateEventModal = () => {
 				required
 				register={register}
 			/>
-
+ */}
 			<Input
 				id="patientId"
 				label="Patient ID"
