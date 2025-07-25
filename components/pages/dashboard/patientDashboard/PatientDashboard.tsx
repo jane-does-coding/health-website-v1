@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import PatientNavbar from "./PatientNavbar";
 import Heading from "../Heading";
 import MediblobChat from "./MediblobChat";
@@ -7,9 +7,14 @@ import SymptomsView from "../../doctorPatientView/SymptomsView";
 import SymptomForm from "./SymptomForm";
 import DoctorProfilePriview from "./DoctorProfilePriview";
 import MedicationTable from "@/components/MedicationTable";
+import EventsList from "../EventsList";
+import useEventModal from "@/app/hooks/useEventModal";
 
 const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 	console.log(currentUser);
+
+	const createEventModal = useEventModal();
+
 	return (
 		<div className="flex">
 			<PatientNavbar />
@@ -31,6 +36,16 @@ const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 				</div>
 				<div className="w-3/10">
 					<MediblobChat />
+					<h2 className="text-[5vh] mt-[3vh] pb-[1vh] border-b-2 border-neutral-300">
+						Events
+					</h2>
+					<button
+						className="w-full bg-neutral-100 border-2 border-neutral-200 rounded-[2vh] py-[1vh] mt-[2vh] mb-[2vh] cursor-pointer"
+						onClick={() => createEventModal.onOpen(currentUser.id)}
+					>
+						Create an Event +
+					</button>
+					<EventsList currentUser={currentUser} />
 				</div>
 			</div>
 		</div>

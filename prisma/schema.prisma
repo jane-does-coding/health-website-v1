@@ -95,6 +95,6 @@ model Event {
 }
 
 enum EventType {
-  inPerson
+  inperson
   online
 }

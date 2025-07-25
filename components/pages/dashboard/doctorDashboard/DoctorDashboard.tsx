@@ -17,7 +17,7 @@ const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 			<DoctorNavbar />
 
 			<div className="w-[93.5vw] flex py-[5vh] px-[4vw]">
-				<div className="w-15/20">
+				<div className="w-14/20 pr-[3vw]">
 					<Heading />
 					{/* <h1 className="mt-[2vh]">
 						{currentUser.name}, {currentUser.access}
@@ -33,15 +33,19 @@ const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 							<NoPatients />
 						</>
 					)}
-					<h2 className="text-[5vh] mt-[5vh] pb-[1vh] border-b-2 border-neutral-300">
+				</div>
+				<div className="w-6/20">
+					<h2 className="text-[5vh] mt-[0vh] pb-[1vh] border-b-2 border-neutral-300">
 						Events
 					</h2>
-					<button onClick={() => createEventModal.onOpen(currentUser.id)}>
-						Create an Event
+					<button
+						className="w-full bg-neutral-100 border-2 border-neutral-200 rounded-[2vh] py-[1vh] mt-[2vh] mb-[2vh] cursor-pointer"
+						onClick={() => createEventModal.onOpen(currentUser.id)}
+					>
+						Create an Event +
 					</button>
 					<EventsList currentUser={currentUser} />
 				</div>
-				<div className="w-5/20"></div>
 			</div>
 		</div>
 	);
