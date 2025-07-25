@@ -5,7 +5,7 @@ import { Calendar, dateFnsLocalizer, ToolbarProps } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import { SafeUser } from "@/app/types/SafeUser";
-import enUS from "date-fns/locale/en-US";
+import { enUS } from "date-fns/locale/en-US";
 
 type CalendarEvent = {
 	title: string;
