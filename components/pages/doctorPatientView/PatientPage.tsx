@@ -6,7 +6,6 @@ import Heading from "../dashboard/Heading";
 import SymptomsView from "./SymptomsView";
 import useMedicationsModal from "@/app/hooks/useMedicationModal";
 import MedicationTable from "@/components/MedicationTable";
-import { FaStar } from "react-icons/fa";
 import { PiStarFourFill } from "react-icons/pi";
 
 const PatientPage = ({ user }: { user: SafeUser }) => {
