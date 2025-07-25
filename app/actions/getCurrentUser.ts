@@ -19,11 +19,16 @@ export default async function getCurrentUser() {
 			},
 			include: {
 				connectionsFrom: {
-					include: { to: true },
+					include: {
+						to: { include: { prescribedMedications: true } },
+					},
 				},
 				connectionsTo: {
-					include: { from: true },
+					include: {
+						from: { include: { prescribedMedications: true } },
+					},
 				},
+
 				symptoms: true,
 				prescribedMedications: true,
 				assignedMedications: true,

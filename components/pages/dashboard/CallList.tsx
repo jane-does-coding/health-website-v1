@@ -1,5 +1,6 @@
 import { SafeUser } from "@/app/types/SafeUser";
 import React from "react";
+import { FaArrowRight } from "react-icons/fa";
 
 const CallList = ({ currentUser }: { currentUser: SafeUser }) => {
 	const events = [...(currentUser?.userEvents || [])]
@@ -27,17 +28,25 @@ const CallList = ({ currentUser }: { currentUser: SafeUser }) => {
 				return (
 					<div
 						key={event.id}
-						className="flex items-start justify-between py-[1.25vh] px-[1vw] border-y-[0.5px] border-neutral-300"
+						className="flex items-center justify-between py-[1.75vh] px-[1vw] border-y-[0.5px] border-neutral-300"
 					>
-						<p className="mt-[1vh] text-[1.75vh]">
+						<p className="mt-[0vh] text-[1.75vh] w-5/10">
 							with{" "}
 							<span className="text-[2.5vh] ml-[0.25vw]">
 								{event.patient?.name || "—"}
 							</span>
 						</p>
-						<div className="flex items-center justify-between mt-[1.5vh] w-fit gap-[2vw]">
+						<div className="flex items-center justify-between mt-[0vh]  gap-[2vw] w-4/10">
 							<p>{date}</p>
 							<p>{time}</p>
+						</div>
+						<div className=" w-1/10 flex items-center justify-center">
+							<FaArrowRight
+								className="text-[2.5vh] text-neutral-900 cursor-pointer"
+								onClick={() => {
+									window.location.href = `/events/${event.id}`;
+								}}
+							/>
 						</div>
 					</div>
 				);

@@ -32,7 +32,7 @@ const RegisterModal = () => {
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		setIsLoading(true);
-		console.log(data);
+		data;
 
 		axios
 			.post("/api/register", data)
@@ -57,8 +57,8 @@ const RegisterModal = () => {
 				});
 			})
 			.catch((err: unknown) => {
-				console.log("Error submitting data");
-				console.log(err);
+				("Error submitting data");
+				err;
 				toast.error("Something went wrong");
 			})
 			.finally(() => {
