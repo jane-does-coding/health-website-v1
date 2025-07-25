@@ -8,10 +8,9 @@ import NoPatients from "../../doctorPatients/NoPatients";
 import useEventModal from "@/app/hooks/useEventModal";
 import EventsList from "../EventsList";
 import CallList from "../CallList";
+import NextEventWarning from "../NextEventWarning";
 
 const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
-	console.log(currentUser);
-
 	const createEventModal = useEventModal();
 	return (
 		<div className="flex">
@@ -20,10 +19,12 @@ const DoctorDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 			<div className="w-[93.5vw] flex py-[5vh] px-[4vw]">
 				<div className="w-14/20 pr-[3vw]">
 					<Heading />
-					{/* <h1 className="mt-[2vh]">
+					<h1 className="mt-[2vh]">
 						{currentUser.name}, {currentUser.access}
 					</h1>
-				*/}
+
+					<NextEventWarning currentUser={currentUser} />
+
 					{currentUser.connectedUsers.length > 0 ? (
 						<PatientsList currentUser={currentUser} />
 					) : (

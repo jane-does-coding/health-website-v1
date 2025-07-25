@@ -40,10 +40,10 @@ const MedicationTable = ({
 		<div className="mt-4">
 			{/* Header */}
 			<div className="flex font-semibold text-left border-black border-1 rounded-t-[1.5vh] overflow-hidden bg-gray-100">
-				<div className="w-6/10 p-[1.5vh] pl-[2vw] border-r border-black text-[2.25vh] ">
+				<div className="w-5/10 p-[1.5vh] pl-[2vw] border-r border-black text-[2.25vh] ">
 					Name
 				</div>
-				<div className="w-2/10 p-[1.5vh] border-r border-black text-[2.25vh] items-center justify-center flex">
+				<div className="w-3/10 p-[1.5vh] border-r border-black text-[2.25vh] items-center justify-center flex">
 					Dates
 				</div>
 				<div className="w-2/10 p-[1.5vh] items-center justify-center flex text-[2.25vh]">
@@ -55,10 +55,10 @@ const MedicationTable = ({
 			<div className="border-x border-b border-black rounded-b-[1.5vh] overflow-hidden">
 				{medications.map((med, index) => (
 					<div key={index} className="flex text-left border-t border-black">
-						<div className=" p-[1.5vh] border-r border-black text-[2.25vh] w-6/10 pl-[2vw]">
+						<div className=" p-[1.5vh] border-r border-black text-[2.25vh] w-5/10 pl-[2vw]">
 							{med.title}
 						</div>
-						<div className="w-2/10 p-[1.5vh] border-r border-black text-[2.25vh] items-center justify-center flex">
+						<div className="w-3/10 p-[1.5vh] border-r border-black text-[2.25vh] items-center justify-center flex">
 							{formatDate(med.startDate)} - {formatDate(med.endDate)}
 						</div>
 						<div className="w-2/10 p-[1.5vh] items-center justify-center flex text-[2.25vh]">

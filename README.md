@@ -15,6 +15,7 @@ _A shared medical tracking portal that connects patients and doctors through sma
 - ✅ Register/Login
 - ✅ Add/remove patients via **Patient Code**
 - ✅ View patient symptoms
+- ✅ Add Event
 
 ### Patient
 

@@ -9,10 +9,9 @@ import DoctorProfilePriview from "./DoctorProfilePriview";
 import MedicationTable from "@/components/MedicationTable";
 import EventsList from "../EventsList";
 import useEventModal from "@/app/hooks/useEventModal";
+import NextEventWarning from "../NextEventWarning";
 
 const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
-	console.log(currentUser);
-
 	const createEventModal = useEventModal();
 
 	return (
@@ -22,9 +21,12 @@ const PatientDashboard = ({ currentUser }: { currentUser: SafeUser }) => {
 			<div className="w-[93.5vw] flex py-[5vh] px-[4vw]">
 				<div className="w-7/10 pr-[3vw]">
 					<Heading />
+
 					<h1 className="mt-[2vh]">
 						{currentUser.name}, {currentUser.access}
 					</h1>
+					<NextEventWarning currentUser={currentUser} />
+
 					<SymptomsView user={currentUser} />
 					<SymptomForm user={currentUser} />
 					<h2 className="text-[3.5vh] font-light mt-[4vh]">Medications</h2>
