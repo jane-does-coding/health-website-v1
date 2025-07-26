@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import Modal from "./Modal";
 import Heading from "./Heading";
@@ -12,7 +12,24 @@ import { useRouter } from "next/navigation";
 const CreateEventModal = () => {
 	const eventModal = useEventModal();
 	const [isLoading, setIsLoading] = useState(false);
+	const [patients, setPatients] = useState<{ id: string; name: string }[]>([]);
 	const router = useRouter();
+
+	useEffect(() => {
+		const fetchPatients = async () => {
+			try {
+				const res = await fetch("/api/patients");
+				if (!res.ok) throw new Error("Failed to load patients");
+				const data = await res.json();
+				setPatients(data); // expecting [{id:"1", name:"John"}]
+			} catch (err) {
+				console.error(err);
+				toast.error("Could not load patients");
+			}
+		};
+
+		if (eventModal.isOpen) fetchPatients();
+	}, [eventModal.isOpen]);
 
 	const {
 		register,
@@ -92,22 +109,14 @@ const CreateEventModal = () => {
 				errors={errors}
 				register={register}
 			/>
-			{/* 
-			<Input
-				id="doctorId"
-				label="Doctor ID"
-				disabled={isLoading}
-				errors={errors}
-				required
-				register={register}
-			/>
- */}
-			<Input
+
+			<SelectInput
 				id="patientId"
-				label="Patient ID"
-				disabled={isLoading}
-				errors={errors}
+				label="Select Patient"
+				options={patients.map((p) => `${p.id}:${p.name}`)}
 				required
+				disabled={isLoading || patients.length === 0}
+				errors={errors}
 				register={register}
 			/>
 		</div>
