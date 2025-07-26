@@ -33,10 +33,10 @@ const slides = [
 
 const Carousel = () => {
 	const [currentSlide, setCurrentSlide] = useState(0);
-	const { ref: bottomRef, inView: bottomInView } = useInView({
+	/* 	const { ref: bottomRef, inView: bottomInView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
-	});
+	}); */
 
 	useEffect(() => {
 		const interval = setInterval(() => {
