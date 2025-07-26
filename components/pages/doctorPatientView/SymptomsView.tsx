@@ -1,8 +1,27 @@
 import { SafeUser } from "@/app/types/SafeUser";
-import React from "react";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const SymptomsView = ({ user }: { user: SafeUser }) => {
-	if (!user || !user.symptoms || user.symptoms.length === 0) {
+	const [symptoms, setSymptoms] = useState(user?.symptoms || []);
+
+	const handleDelete = async (symptomId: string) => {
+		try {
+			const res = await fetch(`/api/symptoms/${symptomId}`, {
+				method: "DELETE",
+			});
+
+			if (!res.ok) throw new Error("Failed to delete symptom");
+
+			setSymptoms((prev) => prev.filter((s) => s.id !== symptomId));
+			toast.success("Symptom removed");
+		} catch (err) {
+			console.error(err);
+			toast.error("Could not delete symptom");
+		}
+	};
+
+	if (!symptoms || symptoms.length === 0) {
 		return (
 			<div className="mt-[3vh]">
 				<h2 className="text-[3.5vh] font-light mb-[2vh]">
@@ -26,16 +45,23 @@ const SymptomsView = ({ user }: { user: SafeUser }) => {
 				</div>
 			</div>
 			<div className="flex gap-x-[2vw] gap-y-[2vh] flex-wrap mt-[3vh]">
-				{user.symptoms.map((symptom, i) => (
+				{symptoms.map((symptom) => (
 					<div
-						key={i}
-						className={`rounded-full border-1 border-black px-[3vw] py-[1vh] text-[2.5vh] ${
-							symptom.level === "severe"
-								? "bg-neutral-200"
-								: "bg-neutral-200/0  border-dashed"
-						}`}
+						key={symptom.id}
+						className={`relative rounded-full border-1 border-black px-[3vw] py-[1vh] text-[2.5vh] flex items-center gap-2
+              ${
+								symptom.level === "severe"
+									? "bg-neutral-200"
+									: "bg-neutral-200/0 border-dashed"
+							}`}
 					>
 						{symptom.symptom}
+						<button
+							onClick={() => handleDelete(symptom.id)}
+							className="ml-2 text-red-800 hover:text-red-800 text-[2vh]"
+						>
+							✕
+						</button>
 					</div>
 				))}
 			</div>
