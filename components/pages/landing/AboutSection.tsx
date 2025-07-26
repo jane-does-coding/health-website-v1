@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import React, { useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { motion, useAnimation } from "framer-motion";
