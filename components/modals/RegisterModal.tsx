@@ -108,7 +108,7 @@ const RegisterModal = () => {
 					errors={errors}
 					required
 					register={register}
-					options={["Patient", "Doctor"]}
+					options={["patient", "doctor"]}
 				/>
 			</div>
 			<Input

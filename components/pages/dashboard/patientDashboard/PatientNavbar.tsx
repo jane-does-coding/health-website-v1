@@ -8,7 +8,7 @@ import { signOut } from "next-auth/react";
 
 const PatientNavbar = () => {
 	return (
-		<div className="w-[6.5vw] border-r-2 border-black sticky top-0 left-0 h-screen z-[999]">
+		<div className="w-[6.5vw] border-r-2 border-black sticky top-0 left-0 h-screen z-[980]">
 			<div className="flex flex-col items-center h-full justify-center pt-[3vh] pb-[5vh] relative">
 				<Link href={"/"}>
 					<img src="/stars/star5.png" className="w-[4.5vw]" alt="" />
