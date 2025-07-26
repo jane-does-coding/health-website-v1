@@ -1,6 +1,6 @@
 "use client";
 import { SafeUser } from "@/app/types/SafeUser";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DoctorNavbar from "../dashboard/doctorDashboard/DoctorNavbar";
 import Heading from "../dashboard/Heading";
 import SymptomsView from "./SymptomsView";
@@ -11,6 +11,33 @@ import EventsList from "../dashboard/EventsList";
 
 const PatientPage = ({ user }: { user: SafeUser }) => {
 	const medicationModal = useMedicationsModal();
+	const [summary, setSummary] = useState("Loading AI summary...");
+
+	useEffect(() => {
+		const fetchSummary = async () => {
+			try {
+				const res = await fetch("/api/gemini", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						prompt:
+							"Give a quick summary about this patient the information of which is provided, im a doctor and I need a summary of this patient to help me understand them better.",
+						userInfo: user,
+					}),
+				});
+
+				if (!res.ok) throw new Error("Failed to fetch summary");
+
+				const data = await res.json();
+				setSummary(data.text || "No summary available.");
+			} catch (err) {
+				console.error(err);
+				setSummary("Could not load AI summary.");
+			}
+		};
+
+		fetchSummary();
+	}, [user]);
 
 	return (
 		<div className="flex">
@@ -22,9 +49,9 @@ const PatientPage = ({ user }: { user: SafeUser }) => {
 
 					{/* Symptoms */}
 					<SymptomsView user={user} />
+
 					<div className="flex items-center justify-between mt-[5vh] mb-[3vh]">
 						<h2 className="text-[3.5vh] font-light">Medications</h2>
-
 						<button
 							className="bg-neutral-900 text-white px-4 py-2 rounded-[1.5vh] cursor-pointer transition"
 							onClick={() => medicationModal.onOpen(user.id)}
@@ -34,15 +61,15 @@ const PatientPage = ({ user }: { user: SafeUser }) => {
 					</div>
 					<MedicationTable medications={user.prescribedMedications || []} />
 				</div>
+
 				<div className="w-6/20">
 					<h2 className="flex items-center justify-center gap-[1vw] text-[2.5vh] mb-[2vh]">
 						AI Summary <PiStarFourFill className="text-[2.75vh]" />
 					</h2>
 					<p className="leading-[3.5vh] text-[2vh] py-[2vh] px-[1.5vw] rounded-[2vh] border-2 border-black">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Voluptates, temporibus! Assumenda quis atque voluptatem earum quidem
-						quibusdam suscipit, cumque quisquam.
+						{summary}
 					</p>
+
 					<h2 className="text-[4vh] mt-[2vh] pb-[1vh] border-b-2 border-neutral-300 mb-[2vh]">
 						Events
 					</h2>
