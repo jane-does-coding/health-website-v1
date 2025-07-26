@@ -35,3 +35,26 @@ export async function POST(req: Request) {
 		return new NextResponse("Internal Error", { status: 500 });
 	}
 }
+
+export async function DELETE(req: Request) {
+	try {
+		const currentUser = await getCurrentUser();
+		if (!currentUser || currentUser.access !== "doctor") {
+			return new NextResponse("Unauthorized", { status: 401 });
+		}
+
+		const { medicationId } = await req.json();
+		if (!medicationId) {
+			return new NextResponse("Missing medicationId", { status: 400 });
+		}
+
+		await prisma.medication.delete({
+			where: { id: medicationId },
+		});
+
+		return NextResponse.json({ success: true });
+	} catch (error) {
+		console.error("[MEDICATION_DELETE]", error);
+		return new NextResponse("Internal Error", { status: 500 });
+	}
+}

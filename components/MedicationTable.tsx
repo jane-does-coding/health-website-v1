@@ -1,17 +1,5 @@
 import React from "react";
 
-/* type Medication = {
-	id: string;
-	createdAt: Date;
-	title: string;
-	dosage: string;
-	instructions: string | null;
-	startDate: Date;
-	endDate: Date;
-	patientId: string;
-	doctorId: string;
-}; */
-
 const formatDate = (dateStr: Date) => {
 	const date = new Date(dateStr);
 	return date.toLocaleString("default", { month: "short", day: "numeric" });

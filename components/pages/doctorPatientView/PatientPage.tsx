@@ -5,9 +5,9 @@ import DoctorNavbar from "../dashboard/doctorDashboard/DoctorNavbar";
 import Heading from "../dashboard/Heading";
 import SymptomsView from "./SymptomsView";
 import useMedicationsModal from "@/app/hooks/useMedicationModal";
-import MedicationTable from "@/components/MedicationTable";
 import { PiStarFourFill } from "react-icons/pi";
 import EventsList from "../dashboard/EventsList";
+import MedicationTableWithDeletion from "./MedicationTableWithDeletion";
 
 const PatientPage = ({ user }: { user: SafeUser }) => {
 	const medicationModal = useMedicationsModal();
@@ -59,7 +59,9 @@ const PatientPage = ({ user }: { user: SafeUser }) => {
 							Assign Medication
 						</button>
 					</div>
-					<MedicationTable medications={user.prescribedMedications || []} />
+					<MedicationTableWithDeletion
+						medications={user.prescribedMedications || []}
+					/>
 				</div>
 
 				<div className="w-6/20">
